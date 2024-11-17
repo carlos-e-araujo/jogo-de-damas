@@ -1,0 +1,63 @@
+@startuml Classes
+
+package model {
+    class Tabuleiro {
+        -pecas: Peca[][]
+        -numMaxDeCapturasPossiveis: int
+
+        +Tabuleiro(pecas: Peca[][]):void
+        +moverPeca(inicioX: int, inicioY: int, fimX: int, fimY: int): boolean
+        +obterPecaEm(x: int, y: int): Peca
+        +verificarPossiveisDamas(): void
+        +verificarVitoria(): boolean
+    }
+
+    class Peca {
+        -cor: char
+        -isDama: boolean
+
+        +promoverParaDama(): void
+    }
+
+    class Jogo {
+        -jogadorAtual: char
+        -contadorMovimentos: int
+        -tabuleiro: Tabuleiro
+        -tabuleiroTmp: Tabuleiro
+
+        +iniciarTurno(): void
+        +finalizarTurno(): void
+        +verificarFimDeTurno(): boolean
+    }
+}
+
+package view {
+    class TabuleiroView {
+        +exibirCasas(pecas: Peca[][]): void
+    }
+
+    class JogoView {
+        +exibirMensagem(texto: String): void
+        +receberEntrada(): String
+    }
+}
+
+package controller {
+    class JogoController {
+        -jogoModel: Jogo
+        -tabuleiroView: TabuleiroView
+        -jogoView: JogoView
+
+        +loopDeJogo(): void
+        -receberMovimento(String entrada): String
+    }
+}
+
+Tabuleiro *-- Peca
+Tabuleiro --* Jogo
+Peca ..> TabuleiroView
+JogoController *-- TabuleiroView
+JogoController *-- JogoView
+JogoController *-- Jogo
+
+@enduml

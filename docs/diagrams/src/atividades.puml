@@ -1,0 +1,55 @@
+@startuml atividades
+
+skinparam DefaultTextAlignment center
+skinparam DefaultFontSize 12
+
+start
+:definir posições iniciais do tabuleiro;
+
+repeat
+    :seleciona o próximo jogador;
+
+    repeat
+        :inicializar contador de capturas temporário;
+        :contabilizar e armazenar número máximo de capturas possíveis na rodada;
+        :carregar posições do tabuleiro no tabuleiro temporário;
+        :exibir tabuleiro temporário;
+
+        repeat
+            :o jogador atual deve selecionar uma peça;
+            :analisar se a peça selecionada é valida;
+        repeat while (a peça é valida?) is (não)
+
+        repeat
+            repeat
+                :o jogador atual deve escolher a nova posição para a peça;
+                :analisar se a posição selecionada é valida;
+            repeat while (posição valida?) is (não)
+
+            :analisar se uma captura foi realizada;
+
+            if (uma captura foi realizada?) then (sim)
+                :remover a peça capturada do tabuleiro temporário;
+                :adicionar um ao contador de capturas temporário;
+            endif
+
+            :move a peça selecionada;
+            :armazenar posições no tabuleiro temporário;
+            :exibir o tabuleiro temporário;
+            :analisar se é possível realizar outra captura;
+        repeat while (é possível realizar outra captura?) is (sim)
+    repeat while (o número máximo de capturas foi atingido?) is (não)
+
+    :verificar se a peça selecionada pode se tornar uma dama;
+    if (a peça selecionada pode se tornar uma dama?) then (sim)
+        :converter a peça selecionada em dama;
+    endif
+
+    :armazenar posições do tabuleiro temporário no tabuleiro;
+    :verificar se houve uma vitoria ou empate;
+repeat while (é o fim do jogo?) is (não)
+
+:exibe o nome do vencedor;
+end
+
+@enduml
