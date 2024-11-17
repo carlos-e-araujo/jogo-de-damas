@@ -1,4 +1,4 @@
-@startuml atividades
+@startuml Atividades
 
 skinparam DefaultTextAlignment center
 skinparam DefaultFontSize 12
