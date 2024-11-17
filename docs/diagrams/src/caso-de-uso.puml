@@ -1,0 +1,13 @@
+@startuml CasoDeUso
+
+actor Jogador
+
+usecase "Selecionar Peça" as UC1
+usecase "Mover Peça" as UC2
+usecase "Capturar Peça" as UC3
+
+Jogador --> UC1
+Jogador --> UC2
+Jogador --> UC3
+
+@enduml
