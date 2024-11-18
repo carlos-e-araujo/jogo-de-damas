@@ -9,7 +9,7 @@ package model {
         +obterPecaEm(x: int, y: int): Peca
         +verificarPossiveisDamas(): void
         +verificarVitoria(): boolean
-        +verificarMaxCapturasPossiveis: int
+        +verificarMaxCapturasPossiveis(): int
     }
 
     class Peca {
@@ -33,7 +33,7 @@ package model {
 
 package view {
     class TabuleiroView {
-        +exibirCasas(pecas: Peca[][]): void
+        +exibirCasas(tabuleiro: Tabuleiro) void
     }
 
     class JogoView {
@@ -53,11 +53,17 @@ package controller {
     }
 }
 
+class Main {
+    - JogoController: JogoController
+
+    + main(args[]: String): void
+}
+
 Tabuleiro *-- Peca
 Tabuleiro --* Jogo
-Peca ..> TabuleiroView
-JogoController *-- TabuleiroView
-JogoController *-- JogoView
-JogoController *-- Jogo
+JogoController -- TabuleiroView
+JogoController -- JogoView
+JogoController -- Jogo
+JogoController - Main
 
 @enduml
