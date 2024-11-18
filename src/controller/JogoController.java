@@ -2,19 +2,26 @@ package controller;
 
 import model.Jogo;
 import view.JogoView;
-import view.TabuleiroView;
 
 public class JogoController {
     private Jogo jogoModel;
-    private TabuleiroView tabuleiroView;
     private JogoView jogoView;
 
-    public void loopDeJogo() {
-        // TODO: loopDeJogo
+    public JogoController(Jogo jogoModel, JogoView jogoView) {
+        this.jogoModel = jogoModel;
+        this.jogoView = jogoView;
     }
 
-    private String receberMovimento(String entrada) {
+    public String receberMovimento(String entrada) {
         // TODO: receberMovimento
-        return "";
+        return null;
+    }
+
+    public void proximoTurno() {
+        // TODO: proximoTurno
+    }
+
+    public void jogar() {
+        // TODO: jogar
     }
 }

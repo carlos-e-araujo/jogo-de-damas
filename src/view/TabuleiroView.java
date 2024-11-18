@@ -1,9 +1,9 @@
 package view;
 
-import model.Peca;
+import model.Tabuleiro;
 
 public class TabuleiroView {
-    public void exibirCasas(Peca[][] pecas) {
+    public void exibirCasas(Tabuleiro tabuleiro) {
         // TODO: exibirCasas
     }
 }

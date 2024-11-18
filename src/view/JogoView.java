@@ -7,6 +7,6 @@ public class JogoView {
 
     public String receberEntrada() {
         // TODO: receberEntrada
-        return "";
+        return null;
     }
 }

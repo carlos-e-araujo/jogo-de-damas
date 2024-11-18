@@ -3,39 +3,31 @@ package model;
 public class Tabuleiro {
     private Peca[][] pecas;
 
-    public Tabuleiro(Peca[][] pecas) {
-        // TODO: Tabuleiro constructor
+    public Tabuleiro() {
+        // TODO: constructor
     }
 
-    public boolean moverPeca(int inicioX, int inicioY, int fimX, int fimY) {
-        // TODO: moverPeca
-        return false;
-    }
-
-    public Peca obterPecaEm(int x, int y) {
-        // TODO: obterPecaEm
+    public Peca getPeca(Posicao posicao) {
+        // TODO: getPeca
         return null;
     }
 
-    public void verificarPossiveisDamas() {
-        // TODO: verificarPossiveisDamas
+    public void setPeca(Posicao posicao, Peca peca) {
+        // TODO: setPeca
     }
 
-    public boolean verificarVitoria() {
-        // TODO: verificarVitoria
+    public boolean verificarMovimento(Posicao posicao, Peca peca) {
+        // TODO: verificarMovimento
         return false;
     }
 
-    public int verificarMaxCapturasPossiveis() {
-        // TODO: verificarMaxCapturasPossiveis
-        return 0;
+    public boolean verificarCaptura(Posicao posicao) {
+        // TODO: verificarCaptura
+        return false;
     }
 
-    public Peca[][] getPecas() {
-        return pecas;
-    }
-
-    public void setPecas(Peca[][] pecas) {
-        this.pecas = pecas;
+    public boolean verificarVitoria(char cor) {
+        // TODO: verificarVitoria
+        return false;
     }
 }
