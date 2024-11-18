@@ -1,20 +1,29 @@
 @startuml Classes
 
+skinparam ArrowFontStyle bold
+skinparam PackageBorderColor #C0C0C0
+skinparam DefaultFontSize 16
+
 package model {
     class Tabuleiro {
         -pecas: Peca[][]
 
-        +Tabuleiro(pecas: Peca[][]):void
-        +moverPeca(inicioX: int, inicioY: int, fimX: int, fimY: int): boolean
-        +obterPecaEm(x: int, y: int): Peca
-        +verificarPossiveisDamas(): void
-        +verificarVitoria(): boolean
-        +verificarMaxCapturasPossiveis(): int
+        +getPeca(posicao: Posicao): Peca
+        +setPeca(posicao: Posicao, peca: Peca): void
+        +verificarMovimento(posicao: Posicao, peca: Peca): boolean
+        +verificarCaptura(posicao: Posicao): boolean
+        +verificarVitoria(cor: char): boolean
+    }
+
+    class Posicao {
+        -x: int
+        -y: int
     }
 
     class Peca {
         -cor: char
         -isDama: boolean
+        -posicao: Posicao
 
         +promoverParaDama(): void
     }
@@ -22,12 +31,27 @@ package model {
     class Jogo {
         -jogadorAtual: char
         -contadorMovimentos: int
-        -tabuleiro: Tabuleiro
-        -tabuleiroTmp: Tabuleiro
 
         +iniciarTurno(): void
         +finalizarTurno(): void
         +verificarFimDeTurno(): boolean
+        +verificarEmpate(): boolean
+    }
+}
+
+package controller {
+    class JogoController {
+        -jogoModel: Jogo
+        -jogoView: JogoView
+
+        +receberMovimento(String entrada): String
+        +proximoTurno(): void
+        +jogar(): void
+    }
+
+    class TabuleiroController {
+        +moverPeca(peca: Peca, destino: Posicao): void
+        +exibirTabuleiro(): void
     }
 }
 
@@ -42,28 +66,12 @@ package view {
     }
 }
 
-package controller {
-    class JogoController {
-        -jogoModel: Jogo
-        -tabuleiroView: TabuleiroView
-        -jogoView: JogoView
-
-        +loopDeJogo(): void
-        -receberMovimento(String entrada): String
-    }
-}
-
-class Main {
-    - JogoController: JogoController
-
-    + main(args[]: String): void
-}
-
-Tabuleiro *-- Peca
-Tabuleiro --* Jogo
-JogoController -- TabuleiroView
-JogoController -- JogoView
-JogoController -- Jogo
-JogoController - Main
+model.Posicao "1..1" ---* "1..1" model.Peca
+model.Peca "0..*" ---* "1..1" model.Tabuleiro
+model.Posicao ...> model.Tabuleiro
+model.Tabuleiro "1..1" --- "1..1" controller.TabuleiroController
+model.Jogo "1..1" --- "1..1" controller.JogoController
+controller.TabuleiroController "1..1" --- "1..1" view.TabuleiroView
+controller.JogoController "1..1" --- "1..1" view.JogoView
 
 @enduml
