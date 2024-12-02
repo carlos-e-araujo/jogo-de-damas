@@ -1,6 +1,6 @@
-package model;
+package com.model;
 
-public class Tabuleiro {
+public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro {
     private Peca[][] pecas;
 
     public Tabuleiro() {

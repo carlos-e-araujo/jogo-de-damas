@@ -1,7 +1,7 @@
-package controller;
+package com.controller;
 
-import model.Peca;
-import model.Posicao;
+import com.model.Peca;
+import com.model.Posicao;
 
 public class TabuleiroController {
     public void moverPeca(Peca peca, Posicao destino) {

@@ -1,4 +1,4 @@
-package view;
+package com.view;
 
 public class JogoView {
     public void exibirMensagem(String texto) {

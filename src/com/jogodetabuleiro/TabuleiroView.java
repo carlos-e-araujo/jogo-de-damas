@@ -9,7 +9,7 @@ public class TabuleiroView<T> {
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
                 T conteudo = tabuleiro.getCelula(i, j);
-                
+
                 if (conteudo == null) {
                     System.out.print(". "); // Célula vazia
                 } else {

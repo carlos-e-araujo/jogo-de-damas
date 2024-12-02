@@ -1,8 +1,8 @@
-package view;
+package com.view;
 
-import model.Tabuleiro;
+import com.jogodetabuleiro.Tabuleiro;
 
-public class TabuleiroView {
+public class TabuleiroView extends com.jogodetabuleiro.TabuleiroView{
     public void exibirCasas(Tabuleiro tabuleiro) {
         // TODO: exibirCasas
     }
