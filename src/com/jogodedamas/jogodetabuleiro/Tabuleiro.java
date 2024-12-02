@@ -1,8 +1,9 @@
-package com.jogodetabuleiro;
+package com.jogodedamas.jogodetabuleiro;
 
 public class Tabuleiro<T> {
     private T[][] celulas;
 
+    @SuppressWarnings("unchecked")
     public Tabuleiro(int linhas, int colunas) {
         celulas = (T[][]) new Object[linhas][colunas];
     }

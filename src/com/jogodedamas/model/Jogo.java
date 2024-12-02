@@ -1,4 +1,4 @@
-package com.model;
+package com.jogodedamas.model;
 
 public class Jogo {
     private char jogadorAtual;

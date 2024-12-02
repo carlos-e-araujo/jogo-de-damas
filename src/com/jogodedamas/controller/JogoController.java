@@ -1,7 +1,7 @@
-package com.controller;
+package com.jogodedamas.controller;
 
-import com.model.Jogo;
-import com.view.JogoView;
+import com.jogodedamas.model.Jogo;
+import com.jogodedamas.view.JogoView;
 
 public class JogoController {
     private Jogo jogoModel;

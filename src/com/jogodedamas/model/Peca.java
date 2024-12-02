@@ -1,8 +1,8 @@
-package com.model;
+package com.jogodedamas.model;
 
 public abstract class Peca {
-    private char cor;
-    private Posicao posicao;
+    protected char cor;
+    protected Posicao posicao;
 
     public Peca(char cor, Posicao posicao) {
         this.cor = cor;
@@ -19,5 +19,10 @@ public abstract class Peca {
 
     public char getCor() {
         return cor;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(cor);
     }
 }

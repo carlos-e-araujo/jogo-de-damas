@@ -1,4 +1,4 @@
-package com.jogodetabuleiro;
+package com.jogodedamas.jogodetabuleiro;
 
 public class TabuleiroController<T> {
     protected Tabuleiro<T> tabuleiro;
