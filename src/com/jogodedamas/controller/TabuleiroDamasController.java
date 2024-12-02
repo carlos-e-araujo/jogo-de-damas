@@ -3,22 +3,18 @@ package com.jogodedamas.controller;
 import com.jogodedamas.model.Posicao;
 import com.jogodedamas.model.TabuleiroDamas;
 import com.jogodedamas.view.TabuleiroDamasView;
+import com.jogodedamas.jogodetabuleiro.TabuleiroController;
 import com.jogodedamas.model.Peca;
 
-public class TabuleiroController {
-    private TabuleiroDamas tabuleiro;
-    private TabuleiroDamasView tView;
-
-    public TabuleiroController(TabuleiroDamas tabuleiro, TabuleiroDamasView tView) {
-        this.tabuleiro = tabuleiro;
-        this.tView = tView;
+public class TabuleiroDamasController extends TabuleiroController<Peca> {
+    public TabuleiroDamasController(TabuleiroDamas tabuleiro, TabuleiroDamasView tView) {
+        super(tabuleiro, tView);
     }
 
     public void moverPeca(Peca peca, Posicao destino) {
-
     }
 
     public void exibirTabuleiro() {
-        tView.exibirTabuleiro(tabuleiro);
+        super.view.exibirTabuleiro(tabuleiro);
     }
 }

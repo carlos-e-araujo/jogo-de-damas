@@ -22,21 +22,12 @@ public class TabuleiroDamas extends Tabuleiro<Peca> {
 
         for (int i = super.getLinhas() - 1; i > (super.getLinhas() / 2); i--) {
             for (int j = buraco; j < super.getColunas(); j += 2) {
-                Comum peca = new Comum('b', new Posicao(i, j));
+                Comum peca = new Comum('p', new Posicao(i, j));
                 super.setCelula(i, j, peca);
             }
 
             buraco = ((buraco == 0) ? 1 : 0);
         }
-    }
-
-    public Peca getPeca(Posicao posicao) {
-        // TODO: getPeca
-        return null;
-    }
-
-    public void setPeca(Posicao posicao, Peca peca) {
-        // TODO: setPeca
     }
 
     public boolean verificarMovimento(Posicao posicao, Peca peca) {

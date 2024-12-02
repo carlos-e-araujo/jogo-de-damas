@@ -1,14 +1,14 @@
 package com.jogodedamas;
 
-import com.jogodedamas.controller.TabuleiroController;
+import com.jogodedamas.controller.TabuleiroDamasController;
 import com.jogodedamas.model.TabuleiroDamas;
 import com.jogodedamas.view.TabuleiroDamasView;
 
 public class Main {
     public static void main(String[] args) {
-        TabuleiroDamas tabuleiro = new TabuleiroDamas();
+        TabuleiroDamas tModel = new TabuleiroDamas();
         TabuleiroDamasView tView = new TabuleiroDamasView();
-        TabuleiroController controller = new TabuleiroController(tabuleiro, tView);
+        TabuleiroDamasController controller = new TabuleiroDamasController(tModel, tView);
 
         controller.exibirTabuleiro();
     }
