@@ -9,8 +9,8 @@ package model {
         -pecas: Peca[][]
 
         +getPeca(posicao: Posicao): Peca
-        +setPeca(posicao: Posicao, peca: Peca): void
-        +verificarMovimento(posicao: Posicao, peca: Peca): boolean
+        +setPeca(posicao: Posicao, comum: Peca): void
+        +verificarMovimento(posicao: Posicao, comum: Peca): boolean
         +verificarCaptura(posicao: Posicao): boolean
         +verificarVitoria(cor: char): boolean
     }
@@ -50,7 +50,7 @@ package controller {
     }
 
     class TabuleiroController {
-        +moverPeca(peca: Peca, destino: Posicao): void
+        +moverPeca(comum: Peca, destino: Posicao): void
         +exibirTabuleiro(): void
     }
 }

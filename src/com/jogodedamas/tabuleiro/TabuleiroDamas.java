@@ -1,6 +1,8 @@
-package com.jogodedamas.model;
+package com.jogodedamas.tabuleiro;
 
 import com.jogodedamas.jogodetabuleiro.Tabuleiro;
+import com.jogodedamas.peca.Peca;
+import com.jogodedamas.peca.comum.Comum;
 
 public class TabuleiroDamas extends Tabuleiro<Peca> {
 
@@ -13,8 +15,9 @@ public class TabuleiroDamas extends Tabuleiro<Peca> {
 
         for (int i = 0; i < (super.getLinhas() / 2) - 1; i++) {
             for (int j = buraco; j < super.getColunas(); j += 2) {
-                Comum peca = new Comum('b', new Posicao(i, j));
-                super.setCelula(i, j, peca);
+                Comum comum = new Comum('b') {
+                };
+                super.setCelula(i, j, comum);
             }
 
             buraco = ((buraco == 0) ? 1 : 0);
@@ -22,27 +25,12 @@ public class TabuleiroDamas extends Tabuleiro<Peca> {
 
         for (int i = super.getLinhas() - 1; i > (super.getLinhas() / 2); i--) {
             for (int j = buraco; j < super.getColunas(); j += 2) {
-                Comum peca = new Comum('p', new Posicao(i, j));
-                super.setCelula(i, j, peca);
+                Comum comum = new Comum('p');
+                super.setCelula(i, j, comum);
             }
 
             buraco = ((buraco == 0) ? 1 : 0);
         }
-    }
-
-    public boolean verificarMovimento(Posicao posicao, Peca peca) {
-        // TODO: verificarMovimento
-        return false;
-    }
-
-    public boolean verificarCaptura(Posicao posicao) {
-        // TODO: verificarCaptura
-        return false;
-    }
-
-    public boolean verificarVitoria(char cor) {
-        // TODO: verificarVitoria
-        return false;
     }
 
     @Override

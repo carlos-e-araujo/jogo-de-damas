@@ -1,32 +1,17 @@
-package com.jogodedamas.model;
+package com.jogodedamas.jogo;
 
 public class Jogo {
     private char jogadorAtual;
     private int contadorMovimentos;
 
     public Jogo() {
-        // TODO: constructor
-    }
-
-    public void iniciarTurno() {
-        // TODO: iniciarTurno
+        this.jogadorAtual = 'b';
     }
 
     public void finalizarTurno() {
-        // TODO: finalizarTurno
+        this.jogadorAtual = (jogadorAtual == 'b') ? 'p' : 'b';
     }
 
-    public boolean verificarFimDeTurno() {
-        // TODO: verificarFimDeTurno
-        return false;
-    }
-
-    public boolean verificarEmpate() {
-        // TODO: verificarEmpate
-        return false;
-    }
-
-    // Getters and Setters
     public char getJogadorAtual() {
         return jogadorAtual;
     }

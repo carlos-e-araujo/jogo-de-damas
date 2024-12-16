@@ -1,7 +1,7 @@
 package com.jogodedamas.jogodetabuleiro;
 
 public class Tabuleiro<T> {
-    private T[][] celulas;
+    private final T[][] celulas;
 
     @SuppressWarnings("unchecked")
     public Tabuleiro(int linhas, int colunas) {
