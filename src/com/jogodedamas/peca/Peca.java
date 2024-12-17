@@ -1,18 +1,27 @@
 package com.jogodedamas.peca;
 
-public class Peca {
-    protected char cor;
+import com.jogodedamas.cor.COR;
 
-    public Peca(char cor, int distanciaMaximaDeMovimento) {
-        this.cor = cor;
+public class Peca {
+
+    protected enum TIPO {
+        COMUM, DAMA
     }
 
-    public char getCor() {
+    private final COR cor;
+    protected TIPO tipo;
+
+    public Peca(COR cor, TIPO tipo) {
+        this.cor = cor;
+        this.tipo = tipo;
+    }
+
+    public COR getCor() {
         return cor;
     }
 
     @Override
     public String toString() {
-        return String.valueOf(cor);
+        return (cor == COR.BRANCO ? "b" : "p");
     }
 }

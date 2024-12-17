@@ -1,4 +1,4 @@
-package com.jogodedamas.jogodetabuleiro;
+package com.jogodetabuleiro;
 
 public class Tabuleiro<T> {
     private final T[][] celulas;

@@ -1,7 +1,4 @@
-package com.jogodedamas.jogodetabuleiro;
-
-import com.jogodedamas.peca.Peca;
-import com.jogodedamas.tabuleiro.TabuleiroDamasView;
+package com.jogodetabuleiro;
 
 public class TabuleiroController<T> {
     protected Tabuleiro<T> tabuleiro;

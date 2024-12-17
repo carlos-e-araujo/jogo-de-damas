@@ -1,8 +1,8 @@
 package com.jogodedamas.tabuleiro;
 
-import com.jogodedamas.jogodetabuleiro.TabuleiroController;
+import com.jogodedamas.cor.COR;
+import com.jogodetabuleiro.TabuleiroController;
 import com.jogodedamas.peca.Peca;
-import com.jogodedamas.peca.comum.Comum;
 
 import java.util.Scanner;
 
@@ -15,7 +15,7 @@ public class TabuleiroDamasController extends TabuleiroController<Peca> {
         super.view.exibirTabuleiro(tabuleiro);
     }
 
-    public boolean realizarJogada(char corJogador) {
+    public boolean realizarJogada(COR corJogador) {
         Scanner scanner = new Scanner(System.in);
 
         int linhaInicial;
@@ -50,11 +50,6 @@ public class TabuleiroDamasController extends TabuleiroController<Peca> {
         colunaFinal = scanner.nextInt();
 
         if (tabuleiro.getCelula(linhaFinal, colunaFinal) != null) {
-            System.out.println("Jogada invalida.");
-            return false;
-        }
-
-        if ((tabuleiro.getCelula(linhaInicial, colunaInicial) instanceof Comum) && (linhaFinal - linhaInicial > 1) && (colunaFinal - colunaInicial > 1)) {
             System.out.println("Jogada invalida.");
             return false;
         }
