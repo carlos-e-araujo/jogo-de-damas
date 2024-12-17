@@ -1,5 +1,5 @@
 package com.jogodedamas.cor;
 
-public enum COR {
+public enum Cor {
     BRANCO, PRETO
 }

@@ -1,6 +1,6 @@
 package com.jogodedamas;
 
-import com.jogodedamas.cor.COR;
+import com.jogodedamas.cor.Cor;
 import com.jogodedamas.tabuleiro.TabuleiroDamas;
 import com.jogodedamas.tabuleiro.TabuleiroDamasController;
 import com.jogodedamas.tabuleiro.TabuleiroDamasView;
@@ -16,7 +16,7 @@ public class JogoDeDamasController {
 
     public void iniciarJogo() {
         while (true) {
-            System.out.println("Vez do jogador " + ((jogoDeDamasModel.getJogadorAtual().getCor() == COR.BRANCO) ? "Branco" : "Preto"));
+            System.out.println("Vez do jogador " + ((jogoDeDamasModel.getJogadorAtual().getCor() == Cor.BRANCO) ? "Branco" : "Preto"));
 
             tabuleiroDamasController.exibirTabuleiro();
 

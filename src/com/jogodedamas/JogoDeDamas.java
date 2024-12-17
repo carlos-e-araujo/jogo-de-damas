@@ -1,6 +1,6 @@
 package com.jogodedamas;
 
-import com.jogodedamas.cor.COR;
+import com.jogodedamas.cor.Cor;
 import com.jogodedamas.jogador.Jogador;
 
 public class JogoDeDamas {
@@ -10,8 +10,8 @@ public class JogoDeDamas {
     private Jogador jogadorAtual;
 
     public JogoDeDamas() {
-        this.jogadorP = new Jogador(COR.PRETO);
-        this.jogadorB = new Jogador(COR.BRANCO);
+        this.jogadorP = new Jogador(Cor.PRETO);
+        this.jogadorB = new Jogador(Cor.BRANCO);
         this.jogadorAtual = this.jogadorB;
     }
 

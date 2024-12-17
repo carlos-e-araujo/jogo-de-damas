@@ -1,16 +1,16 @@
 package com.jogodedamas.jogador;
 
-import com.jogodedamas.cor.COR;
+import com.jogodedamas.cor.Cor;
 
 public class Jogador {
 
-    private final COR cor;
+    private final Cor cor;
 
-    public Jogador(COR cor) {
+    public Jogador(Cor cor) {
         this.cor = cor;
     }
 
-    public COR getCor() {
+    public Cor getCor() {
         return cor;
     }
 }

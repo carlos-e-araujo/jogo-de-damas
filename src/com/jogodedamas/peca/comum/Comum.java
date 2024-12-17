@@ -1,11 +1,11 @@
 package com.jogodedamas.peca.comum;
 
-import com.jogodedamas.cor.COR;
+import com.jogodedamas.cor.Cor;
 import com.jogodedamas.peca.Peca;
 
 public class Comum extends Peca {
 
-    public Comum(COR cor) {
+    public Comum(Cor cor) {
         super(cor, TIPO.COMUM);
     }
 }

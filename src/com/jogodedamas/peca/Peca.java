@@ -1,6 +1,6 @@
 package com.jogodedamas.peca;
 
-import com.jogodedamas.cor.COR;
+import com.jogodedamas.cor.Cor;
 
 public class Peca {
 
@@ -8,20 +8,20 @@ public class Peca {
         COMUM, DAMA
     }
 
-    private final COR cor;
+    private final Cor cor;
     protected TIPO tipo;
 
-    public Peca(COR cor, TIPO tipo) {
+    public Peca(Cor cor, TIPO tipo) {
         this.cor = cor;
         this.tipo = tipo;
     }
 
-    public COR getCor() {
+    public Cor getCor() {
         return cor;
     }
 
     @Override
     public String toString() {
-        return (cor == COR.BRANCO ? "b" : "p");
+        return (cor == Cor.BRANCO ? "b" : "p");
     }
 }

@@ -1,6 +1,6 @@
 package com.jogodedamas.tabuleiro;
 
-import com.jogodedamas.cor.COR;
+import com.jogodedamas.cor.Cor;
 import com.jogodetabuleiro.TabuleiroController;
 import com.jogodedamas.peca.Peca;
 
@@ -15,7 +15,7 @@ public class TabuleiroDamasController extends TabuleiroController<Peca> {
         super.view.exibirTabuleiro(tabuleiro);
     }
 
-    public boolean realizarJogada(COR corJogador) {
+    public boolean realizarJogada(Cor corJogador) {
         Scanner scanner = new Scanner(System.in);
 
         int linhaInicial;
