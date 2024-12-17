@@ -3,7 +3,7 @@ package com.jogodedamas.peca;
 public class Peca {
     protected char cor;
 
-    public Peca(char cor, int distanciaMaximaDeMovimento) {
+    public Peca(char cor) {
         this.cor = cor;
     }
 

@@ -9,8 +9,6 @@ public class TabuleiroDamas extends Tabuleiro<Peca> {
     public TabuleiroDamas() {
         super(8, 8);
 
-        super.getColunas();
-
         int buraco = 0;
 
         for (int i = 0; i < (super.getLinhas() / 2) - 1; i++) {

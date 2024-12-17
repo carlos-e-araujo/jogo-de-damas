@@ -1,10 +1,10 @@
-package com.jogodedamas.jogo;
+package com.jogodedamas;
 
-public class Jogo {
+public class JogoDeDamas {
     private char jogadorAtual;
     private int contadorMovimentos;
 
-    public Jogo() {
+    public JogoDeDamas() {
         this.jogadorAtual = 'b';
     }
 

@@ -2,7 +2,6 @@ package com.jogodedamas.tabuleiro;
 
 import com.jogodedamas.jogodetabuleiro.TabuleiroController;
 import com.jogodedamas.peca.Peca;
-import com.jogodedamas.peca.comum.Comum;
 
 import java.util.Scanner;
 
@@ -54,7 +53,7 @@ public class TabuleiroDamasController extends TabuleiroController<Peca> {
             return false;
         }
 
-        if ((tabuleiro.getCelula(linhaInicial, colunaInicial) instanceof Comum) && (linhaFinal - linhaInicial > 1) && (colunaFinal - colunaInicial > 1)) {
+        if ((linhaFinal - linhaInicial > 1) && (colunaFinal - colunaInicial > 1)) {
             System.out.println("Jogada invalida.");
             return false;
         }
