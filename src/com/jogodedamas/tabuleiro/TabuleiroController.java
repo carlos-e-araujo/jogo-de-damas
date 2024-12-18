@@ -1,14 +1,14 @@
 package com.jogodedamas.tabuleiro;
 
 import com.jogodedamas.cor.Cor;
-import com.jogodetabuleiro.TabuleiroController;
 import com.jogodedamas.peca.Peca;
 
 import java.util.Scanner;
 
-public class TabuleiroDamasController extends TabuleiroController<Peca> {
-    public TabuleiroDamasController(TabuleiroDamas tabuleiro, TabuleiroDamasView tView) {
-        super(tabuleiro, tView);
+public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController<Peca> {
+
+    public TabuleiroController(Tabuleiro tabuleiro, TabuleiroView tabuleiroView) {
+        super(tabuleiro, tabuleiroView);
     }
 
     public void exibirTabuleiro() {
@@ -42,7 +42,7 @@ public class TabuleiroDamasController extends TabuleiroController<Peca> {
             return false;
         }
 
-        System.out.println("Informe a posição que dseja mover a peça");
+        System.out.println("Informe a posição que deseja mover a peça");
         System.out.print("Linha: ");
         linhaFinal = scanner.nextInt();
 

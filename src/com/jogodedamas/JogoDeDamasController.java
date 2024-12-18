@@ -1,26 +1,27 @@
 package com.jogodedamas;
 
 import com.jogodedamas.cor.Cor;
-import com.jogodedamas.tabuleiro.TabuleiroDamas;
-import com.jogodedamas.tabuleiro.TabuleiroDamasController;
-import com.jogodedamas.tabuleiro.TabuleiroDamasView;
+import com.jogodedamas.tabuleiro.Tabuleiro;
+import com.jogodedamas.tabuleiro.TabuleiroController;
+import com.jogodedamas.tabuleiro.TabuleiroView;
 
 public class JogoDeDamasController {
+
     private final JogoDeDamas jogoDeDamasModel;
-    private final TabuleiroDamasController tabuleiroDamasController;
+    private final TabuleiroController tabuleiroController;
 
     public JogoDeDamasController(JogoDeDamas jogoDeDamasModel) {
         this.jogoDeDamasModel = jogoDeDamasModel;
-        this.tabuleiroDamasController = new TabuleiroDamasController(new TabuleiroDamas(), new TabuleiroDamasView());
+        this.tabuleiroController = new TabuleiroController(new Tabuleiro(), new TabuleiroView());
     }
 
     public void iniciarJogo() {
         while (true) {
             System.out.println("Vez do jogador " + ((jogoDeDamasModel.getJogadorAtual().getCor() == Cor.BRANCO) ? "Branco" : "Preto"));
 
-            tabuleiroDamasController.exibirTabuleiro();
+            tabuleiroController.exibirTabuleiro();
 
-            if (tabuleiroDamasController.realizarJogada(jogoDeDamasModel.getJogadorAtual().getCor())) {
+            if (tabuleiroController.realizarJogada(jogoDeDamasModel.getJogadorAtual().getCor())) {
                 jogoDeDamasModel.finalizarTurno();
             }
         }

@@ -1,15 +1,14 @@
 package com.jogodedamas.tabuleiro;
 
 import com.jogodedamas.cor.Cor;
-import com.jogodetabuleiro.Tabuleiro;
 import com.jogodedamas.peca.Peca;
 import com.jogodedamas.peca.comum.Comum;
 
-public class TabuleiroDamas extends Tabuleiro<Peca> {
+public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Peca> {
 
     private static final int DIMENSAO = 8;
 
-    public TabuleiroDamas() {
+    public Tabuleiro() {
         super(DIMENSAO, DIMENSAO);
 
         int buraco = 0;
