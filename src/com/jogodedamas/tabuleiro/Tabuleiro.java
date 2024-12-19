@@ -5,7 +5,6 @@ import com.jogodedamas.peca.Peca;
 import com.jogodedamas.peca.comum.Comum;
 
 public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Peca> {
-
     private static final int DIMENSAO = 8;
 
     public Tabuleiro() {

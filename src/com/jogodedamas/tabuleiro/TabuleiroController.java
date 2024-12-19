@@ -15,42 +15,28 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
         super.view.exibirTabuleiro(tabuleiro);
     }
 
-    public boolean realizarJogada(Cor corJogador) {
+    public boolean realizarJogada(Cor corJogador, int[] posicaoInicial, int[] posicaoFinal) {
         Scanner scanner = new Scanner(System.in);
 
-        int linhaInicial;
-        int colunaInicial;
-        int linhaFinal;
-        int colunaFinal;
-
-        System.out.println("Escolha uma peça no tabuleiro");
-        System.out.print("Linha: ");
-        linhaInicial = scanner.nextInt();
-
-        System.out.print("Coluna: ");
-        colunaInicial = scanner.nextInt();
+        int linhaInicial = posicaoInicial[0];
+        int colunaInicial = posicaoInicial[1];
+        int linhaFinal = posicaoFinal[0];
+        int colunaFinal = posicaoFinal[1];
 
         Peca peca = tabuleiro.getCelula(linhaInicial, colunaInicial);
 
         if (peca == null) {
-            System.out.println("Jogada invalida.");
+            view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
         if (peca.getCor() != corJogador) {
-            System.out.println("Jogada invalida.");
+            view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
-        System.out.println("Informe a posição que deseja mover a peça");
-        System.out.print("Linha: ");
-        linhaFinal = scanner.nextInt();
-
-        System.out.print("Coluna: ");
-        colunaFinal = scanner.nextInt();
-
         if (tabuleiro.getCelula(linhaFinal, colunaFinal) != null) {
-            System.out.println("Jogada invalida.");
+            view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
