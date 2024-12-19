@@ -31,9 +31,4 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Peca> {
             buraco = ((buraco == 0) ? 1 : 0);
         }
     }
-
-    @Override
-    public String toString() {
-        return super.toString();
-    }
 }
