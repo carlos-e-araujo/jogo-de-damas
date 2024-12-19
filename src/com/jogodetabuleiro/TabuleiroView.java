@@ -18,6 +18,7 @@ public class TabuleiroView<T> {
             }
             System.out.println();
         }
+        System.out.println();
     }
 
     public void mostrarMensagem(String mensagem) {
