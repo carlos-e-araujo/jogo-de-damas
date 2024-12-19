@@ -16,11 +16,17 @@ public class JogoDeDamasController {
     }
 
     public void iniciarJogo() {
+        int[] posicaoIncial;
+        int[] posicaoFinal;
+
         while (true) {
             this.jogoDeDamasView.exibirJogadorAtual(jogoDeDamasModel.getJogadorAtual().getCor());
             tabuleiroController.exibirTabuleiro();
 
-            if (tabuleiroController.realizarJogada(jogoDeDamasModel.getJogadorAtual().getCor())) {
+            posicaoIncial = jogoDeDamasView.solicitarPeca();
+            posicaoFinal= jogoDeDamasView.solicitarMovimento();
+
+            if (tabuleiroController.realizarJogada(jogoDeDamasModel.getJogadorAtual().getCor(), posicaoIncial, posicaoFinal)) {
                 jogoDeDamasModel.finalizarTurno();
             }
         }
