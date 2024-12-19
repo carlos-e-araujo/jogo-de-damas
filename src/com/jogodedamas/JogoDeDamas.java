@@ -4,7 +4,6 @@ import com.jogodedamas.cor.Cor;
 import com.jogodedamas.jogador.Jogador;
 
 public class JogoDeDamas {
-
     private final Jogador jogadorB;
     private final Jogador jogadorP;
     private Jogador jogadorAtual;
