@@ -1,5 +1,6 @@
 package com.jogodedamas;
 
+import com.jogodedamas.celula.Celula;
 import com.jogodedamas.tabuleiro.Tabuleiro;
 import com.jogodedamas.tabuleiro.TabuleiroController;
 import com.jogodedamas.tabuleiro.TabuleiroView;
@@ -12,7 +13,7 @@ public class JogoDeDamasController {
     public JogoDeDamasController(JogoDeDamas jogoDeDamasModel) {
         this.jogoDeDamasModel = jogoDeDamasModel;
         this.jogoDeDamasView = new JogoDeDamasView();
-        this.tabuleiroController = new TabuleiroController(new Tabuleiro(), new TabuleiroView());
+        this.tabuleiroController = new TabuleiroController(new Tabuleiro(), new TabuleiroView<Celula>());
     }
 
     public void iniciarJogo() {
@@ -24,7 +25,7 @@ public class JogoDeDamasController {
             tabuleiroController.exibirTabuleiro();
 
             posicaoIncial = jogoDeDamasView.solicitarPeca();
-            posicaoFinal= jogoDeDamasView.solicitarMovimento();
+            posicaoFinal = jogoDeDamasView.solicitarMovimento();
 
             if (tabuleiroController.realizarJogada(jogoDeDamasModel.getJogadorAtual().getCor(), posicaoIncial, posicaoFinal)) {
                 jogoDeDamasModel.finalizarTurno();

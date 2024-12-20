@@ -1,47 +1,42 @@
 package com.jogodedamas.tabuleiro;
 
+import com.jogodedamas.celula.Celula;
 import com.jogodedamas.cor.Cor;
-import com.jogodedamas.peca.Peca;
 
-import java.util.Scanner;
-
-public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController<Peca> {
-
+public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController<Celula> {
     public TabuleiroController(Tabuleiro tabuleiro, TabuleiroView tabuleiroView) {
         super(tabuleiro, tabuleiroView);
     }
 
     public void exibirTabuleiro() {
-        super.view.exibirTabuleiro(tabuleiro);
+        view.exibirTabuleiro(tabuleiro);
     }
 
     public boolean realizarJogada(Cor corJogador, int[] posicaoInicial, int[] posicaoFinal) {
-        Scanner scanner = new Scanner(System.in);
-
         int linhaInicial = posicaoInicial[0];
         int colunaInicial = posicaoInicial[1];
         int linhaFinal = posicaoFinal[0];
         int colunaFinal = posicaoFinal[1];
 
-        Peca peca = tabuleiro.getCelula(linhaInicial, colunaInicial);
+        Celula celula = tabuleiro.getCelula(linhaInicial, colunaInicial);
 
-        if (peca == null) {
+        if (celula.getPeca().getCor() != corJogador) {
             view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
-        if (peca.getCor() != corJogador) {
+        if (tabuleiro.getCelula(linhaFinal, colunaFinal).getPeca() != null) {
             view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
-        if (tabuleiro.getCelula(linhaFinal, colunaFinal) != null) {
+        if (tabuleiro.getCelula(linhaFinal, colunaFinal).getCor() == Cor.BRANCO) {
             view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
-        super.realizarJogada(linhaFinal, colunaFinal, tabuleiro.getCelula(linhaInicial, colunaInicial));
-        tabuleiro.setCelula(linhaInicial, colunaInicial, null);
+        tabuleiro.setCelula(linhaInicial, colunaInicial, new Celula(Cor.PRETO));
+        realizarJogada(linhaFinal, colunaFinal, celula);
 
         return true;
     }
