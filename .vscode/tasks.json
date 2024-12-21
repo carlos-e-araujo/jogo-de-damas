@@ -4,7 +4,7 @@
         {
             "label": "generatePlantumlPng",
             "command": "${command:plantuml.exportDocument}",
-            "isBackground": true,
-        },
+            "isBackground": true
+        }
     ]
 }
