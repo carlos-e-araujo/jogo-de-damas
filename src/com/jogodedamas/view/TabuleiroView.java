@@ -1,31 +1,50 @@
 package com.jogodedamas.view;
 
 import com.jogodedamas.model.Celula;
+import com.jogodedamas.model.Dama;
 import com.jogodedamas.utils.Cor;
-import com.jogodedamas.model.Peca;
 import com.jogodetabuleiro.Tabuleiro;
 
 public class TabuleiroView<T extends Celula> extends com.jogodetabuleiro.TabuleiroView<T> {
+    final String ANSI_BG_BLACK = "\033[48;2;1;100;1m";
+    final String ANSI_BG_WHITE = "\033[48;2;255;255;255m";
+    final String ANSI_BLACK = "\u001B[30m";
+    final String ANSI_WHITE = "\033[38;2;255;255;255m";
+    final String ANSI_RESET = "\u001B[0m";
+
     @Override
     public void exibirTabuleiro(final Tabuleiro<T> tabuleiro) {
-        final String ANSI_BG_BLACK = "\033[48;5;0m";
-        final String ANSI_BG_WHITE = "\033[48;5;15m";
-        final String ANSI_BLACK = "\033[34;5;0m";
-        final String ANSI_WHITE = "\033[37;5;2m";
-        final String ANSI_RESET = "\033[0m";
-
         int linhas = tabuleiro.getLinhas();
         int colunas = tabuleiro.getColunas();
 
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
-                Celula celula = tabuleiro.getCelula(i, j);
-                Peca conteudo = celula.getPeca();
-                String saida = (conteudo == null) ? " " : conteudo.toString();
-                System.out.print(((celula.getCor() == Cor.PRETO) ? (ANSI_BG_BLACK) : (ANSI_BG_WHITE)) + " " + saida + " " + ANSI_RESET);
+                String saida;
+
+                saida = ((tabuleiro.getCelula(i, j).getCor() == Cor.PRETO) ? (ANSI_BG_BLACK) : (ANSI_BG_WHITE)) + " ";
+
+                if (tabuleiro.getCelula(i, j).getPeca() == null) {
+                    saida += " ";
+                } else if (tabuleiro.getCelula(i, j).getPeca() instanceof Dama) {
+                    saida += exibirDama(tabuleiro.getCelula(i, j).getPeca().getCor());
+                } else {
+                    saida += exibirComum(tabuleiro.getCelula(i, j).getPeca().getCor());
+                }
+
+                saida += " " + ANSI_RESET;
+
+                System.out.print(saida);
             }
             System.out.println();
         }
         System.out.println();
+    }
+
+    private String exibirDama(final Cor cor) {
+        return ((cor == Cor.PRETO) ? (ANSI_BLACK) : (ANSI_WHITE)) + "◼";
+    }
+
+    private String exibirComum(final Cor cor) {
+        return ((cor == Cor.PRETO) ? (ANSI_BLACK) : (ANSI_WHITE)) + "●";
     }
 }
