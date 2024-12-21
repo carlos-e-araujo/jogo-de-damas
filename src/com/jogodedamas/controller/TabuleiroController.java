@@ -24,22 +24,18 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
         Celula celulaFinal = tabuleiro.getCelula(linhaFinal, colunaFinal);
 
         if (celulaFinal.getCor() == Cor.BRANCO) {
-            view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
         if (celulaInicial.getCor() == Cor.BRANCO) {
-            view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
         if (celulaFinal.getPeca() != null) {
-            view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
         if (celulaInicial.getPeca().getCor() != corJogador) {
-            view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 

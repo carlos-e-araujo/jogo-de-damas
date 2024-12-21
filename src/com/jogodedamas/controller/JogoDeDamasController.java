@@ -29,6 +29,8 @@ public class JogoDeDamasController {
 
             if (tabuleiroController.realizarJogada(jogoDeDamasModel.getJogadorAtual().getCor(), posicaoIncial, posicaoFinal)) {
                 jogoDeDamasModel.finalizarTurno();
+            } else {
+                jogoDeDamasView.informarJogadaInvalida();
             }
         }
     }
