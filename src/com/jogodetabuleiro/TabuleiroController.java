@@ -1,8 +1,8 @@
 package com.jogodetabuleiro;
 
 public class TabuleiroController<T> {
-    protected Tabuleiro<T> tabuleiro;
-    protected TabuleiroView<T> view;
+    protected final Tabuleiro<T> tabuleiro;
+    protected final TabuleiroView<T> view;
 
     public TabuleiroController(Tabuleiro<T> tabuleiro, TabuleiroView<T> view) {
         this.tabuleiro = tabuleiro;

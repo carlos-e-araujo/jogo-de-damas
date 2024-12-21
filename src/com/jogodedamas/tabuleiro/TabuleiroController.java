@@ -4,7 +4,7 @@ import com.jogodedamas.celula.Celula;
 import com.jogodedamas.cor.Cor;
 
 public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController<Celula> {
-    public TabuleiroController(Tabuleiro tabuleiro, TabuleiroView tabuleiroView) {
+    public TabuleiroController(Tabuleiro tabuleiro, TabuleiroView<Celula> tabuleiroView) {
         super(tabuleiro, tabuleiroView);
     }
 

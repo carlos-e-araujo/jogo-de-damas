@@ -3,17 +3,10 @@ package com.jogodedamas.peca;
 import com.jogodedamas.cor.Cor;
 
 public class Peca {
+    protected final Cor cor;
 
-    protected enum TIPO {
-        COMUM, DAMA
-    }
-
-    private final Cor cor;
-    protected TIPO tipo;
-
-    public Peca(Cor cor, TIPO tipo) {
+    public Peca(Cor cor) {
         this.cor = cor;
-        this.tipo = tipo;
     }
 
     public Cor getCor() {

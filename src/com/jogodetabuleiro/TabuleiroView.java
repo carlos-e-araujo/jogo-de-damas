@@ -1,7 +1,6 @@
 package com.jogodetabuleiro;
 
 public class TabuleiroView<T> {
-
     public void exibirTabuleiro(Tabuleiro<T> tabuleiro) {
         int linhas = tabuleiro.getLinhas();
         int colunas = tabuleiro.getColunas();

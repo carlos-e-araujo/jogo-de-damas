@@ -5,7 +5,7 @@ import com.jogodedamas.cor.Cor;
 import java.util.Scanner;
 
 public class JogoDeDamasView {
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
     public void exibirJogadorAtual(Cor corJogador) {
         System.out.println("Vez do jogador " + ((corJogador == Cor.BRANCO) ? "Branco" : "Preto"));

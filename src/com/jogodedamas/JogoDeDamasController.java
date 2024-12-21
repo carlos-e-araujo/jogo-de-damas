@@ -1,6 +1,5 @@
 package com.jogodedamas;
 
-import com.jogodedamas.celula.Celula;
 import com.jogodedamas.tabuleiro.Tabuleiro;
 import com.jogodedamas.tabuleiro.TabuleiroController;
 import com.jogodedamas.tabuleiro.TabuleiroView;
@@ -13,7 +12,7 @@ public class JogoDeDamasController {
     public JogoDeDamasController(JogoDeDamas jogoDeDamasModel) {
         this.jogoDeDamasModel = jogoDeDamasModel;
         this.jogoDeDamasView = new JogoDeDamasView();
-        this.tabuleiroController = new TabuleiroController(new Tabuleiro(), new TabuleiroView<Celula>());
+        this.tabuleiroController = new TabuleiroController(new Tabuleiro(), new TabuleiroView<>());
     }
 
     public void iniciarJogo() {

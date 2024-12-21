@@ -6,15 +6,14 @@ import com.jogodedamas.peca.Peca;
 import com.jogodetabuleiro.Tabuleiro;
 
 public class TabuleiroView<T extends Celula> extends com.jogodetabuleiro.TabuleiroView<T> {
-    private final String ANSI_BG_BLACK = "\033[48;5;0m";
-    private final String ANSI_BG_WHITE = "\033[48;5;15m";
-    private final String ANSI_BLACK = "\033[34;5;0m";
-    private final String ANSI_WHITE = "\033[37;5;2m";
-    private final String ANSI_RESET = "\033[0m";
-
-
     @Override
     public void exibirTabuleiro(final Tabuleiro<T> tabuleiro) {
+        final String ANSI_BG_BLACK = "\033[48;5;0m";
+        final String ANSI_BG_WHITE = "\033[48;5;15m";
+        final String ANSI_BLACK = "\033[34;5;0m";
+        final String ANSI_WHITE = "\033[37;5;2m";
+        final String ANSI_RESET = "\033[0m";
+
         int linhas = tabuleiro.getLinhas();
         int colunas = tabuleiro.getColunas();
 
