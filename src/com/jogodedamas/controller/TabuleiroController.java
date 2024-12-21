@@ -1,6 +1,7 @@
 package com.jogodedamas.controller;
 
 import com.jogodedamas.model.Celula;
+import com.jogodedamas.model.Dama;
 import com.jogodedamas.model.Tabuleiro;
 import com.jogodedamas.utils.Cor;
 import com.jogodedamas.view.TabuleiroView;
@@ -36,7 +37,14 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
             return false;
         }
 
-        tabuleiro.setCelula(linhaFinal, colunaFinal, tabuleiro.getCelula(linhaInicial, colunaInicial));
+        if ((tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.PRETO) && (linhaFinal == 0)) {
+            tabuleiro.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
+        } else if ((tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.BRANCO) && (linhaFinal == (tabuleiro.getLinhas() - 1))) {
+            tabuleiro.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.BRANCO)));
+        } else {
+            tabuleiro.setCelula(linhaFinal, colunaFinal, tabuleiro.getCelula(linhaInicial, colunaInicial));
+        }
+
         tabuleiro.setCelula(linhaInicial, colunaInicial, new Celula(Cor.PRETO));
 
         return true;
