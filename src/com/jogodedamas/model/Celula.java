@@ -11,12 +11,17 @@ public class Celula {
         peca = null;
     }
 
+    public Celula(Cor cor, Peca peca) {
+        this.COR = cor;
+        this.peca = peca;
+    }
+
     public Cor getCor() {
-        return COR;
+        return this.COR;
     }
 
     public Peca getPeca() {
-        return peca;
+        return this.peca;
     }
 
     public void setPeca(Peca peca) {
