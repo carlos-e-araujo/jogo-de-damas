@@ -20,27 +20,24 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
         int linhaFinal = posicaoFinal[0];
         int colunaFinal = posicaoFinal[1];
 
-        Celula celulaInicial = tabuleiro.getCelula(linhaInicial, colunaInicial);
-        Celula celulaFinal = tabuleiro.getCelula(linhaFinal, colunaFinal);
-
-        if (celulaFinal.getCor() == Cor.BRANCO) {
+        if (!(linhaFinal >= 0 && linhaFinal < tabuleiro.getLinhas() && colunaFinal >= 0 && colunaFinal < tabuleiro.getColunas())) {
+            return false;
+        } else if (!(linhaInicial >= 0 && linhaInicial < tabuleiro.getLinhas() && colunaInicial >= 0 && colunaInicial < tabuleiro.getColunas())) {
+            return false;
+        } else if (tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca() == null) {
+            return false;
+        } else if (tabuleiro.getCelula(linhaFinal, colunaFinal).getPeca() != null) {
+            return false;
+        } else if (tabuleiro.getCelula(linhaFinal, colunaFinal).getCor() == Cor.BRANCO) {
+            return false;
+        } else if (tabuleiro.getCelula(linhaInicial, colunaInicial).getCor() == Cor.BRANCO) {
+            return false;
+        } else if (tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca().getCor() != corJogador) {
             return false;
         }
 
-        if (celulaInicial.getCor() == Cor.BRANCO) {
-            return false;
-        }
-
-        if (celulaFinal.getPeca() != null) {
-            return false;
-        }
-
-        if (celulaInicial.getPeca().getCor() != corJogador) {
-            return false;
-        }
-
+        tabuleiro.setCelula(linhaFinal, colunaFinal, tabuleiro.getCelula(linhaInicial, colunaInicial));
         tabuleiro.setCelula(linhaInicial, colunaInicial, new Celula(Cor.PRETO));
-        realizarJogada(linhaFinal, colunaFinal, celulaInicial);
 
         return true;
     }
