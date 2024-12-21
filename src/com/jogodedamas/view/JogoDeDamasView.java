@@ -1,6 +1,6 @@
-package com.jogodedamas;
+package com.jogodedamas.view;
 
-import com.jogodedamas.cor.Cor;
+import com.jogodedamas.utils.Cor;
 
 import java.util.Scanner;
 

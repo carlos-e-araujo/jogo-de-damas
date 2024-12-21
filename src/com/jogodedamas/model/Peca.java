@@ -1,6 +1,6 @@
-package com.jogodedamas.peca;
+package com.jogodedamas.model;
 
-import com.jogodedamas.cor.Cor;
+import com.jogodedamas.utils.Cor;
 
 public class Peca {
     protected final Cor cor;

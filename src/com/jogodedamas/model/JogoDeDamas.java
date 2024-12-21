@@ -1,7 +1,6 @@
-package com.jogodedamas;
+package com.jogodedamas.model;
 
-import com.jogodedamas.cor.Cor;
-import com.jogodedamas.jogador.Jogador;
+import com.jogodedamas.utils.Cor;
 
 public class JogoDeDamas {
     private final Jogador jogadorB;

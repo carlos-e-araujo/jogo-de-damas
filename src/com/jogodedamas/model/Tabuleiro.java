@@ -1,8 +1,6 @@
-package com.jogodedamas.tabuleiro;
+package com.jogodedamas.model;
 
-import com.jogodedamas.celula.Celula;
-import com.jogodedamas.cor.Cor;
-import com.jogodedamas.peca.comum.Comum;
+import com.jogodedamas.utils.Cor;
 
 public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     private static final int DIMENSAO = 8;

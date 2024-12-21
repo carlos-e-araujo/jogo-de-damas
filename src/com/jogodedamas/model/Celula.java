@@ -1,7 +1,6 @@
-package com.jogodedamas.celula;
+package com.jogodedamas.model;
 
-import com.jogodedamas.cor.Cor;
-import com.jogodedamas.peca.Peca;
+import com.jogodedamas.utils.Cor;
 
 public class Celula {
     private final Cor COR;

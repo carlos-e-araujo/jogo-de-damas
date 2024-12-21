@@ -1,4 +1,4 @@
-package com.jogodedamas.cor;
+package com.jogodedamas.utils;
 
 public enum Cor {
     BRANCO, PRETO

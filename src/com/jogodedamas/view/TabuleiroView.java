@@ -1,8 +1,8 @@
-package com.jogodedamas.tabuleiro;
+package com.jogodedamas.view;
 
-import com.jogodedamas.celula.Celula;
-import com.jogodedamas.cor.Cor;
-import com.jogodedamas.peca.Peca;
+import com.jogodedamas.model.Celula;
+import com.jogodedamas.utils.Cor;
+import com.jogodedamas.model.Peca;
 import com.jogodetabuleiro.Tabuleiro;
 
 public class TabuleiroView<T extends Celula> extends com.jogodetabuleiro.TabuleiroView<T> {

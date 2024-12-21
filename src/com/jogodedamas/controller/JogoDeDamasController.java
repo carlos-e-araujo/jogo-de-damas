@@ -1,8 +1,9 @@
-package com.jogodedamas;
+package com.jogodedamas.controller;
 
-import com.jogodedamas.tabuleiro.Tabuleiro;
-import com.jogodedamas.tabuleiro.TabuleiroController;
-import com.jogodedamas.tabuleiro.TabuleiroView;
+import com.jogodedamas.model.JogoDeDamas;
+import com.jogodedamas.model.Tabuleiro;
+import com.jogodedamas.view.TabuleiroView;
+import com.jogodedamas.view.JogoDeDamasView;
 
 public class JogoDeDamasController {
     private final JogoDeDamas jogoDeDamasModel;

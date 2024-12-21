@@ -1,5 +1,5 @@
-import com.jogodedamas.JogoDeDamas;
-import com.jogodedamas.JogoDeDamasController;
+import com.jogodedamas.model.JogoDeDamas;
+import com.jogodedamas.controller.JogoDeDamasController;
 
 public class App {
     public static void main(String[] args) {
