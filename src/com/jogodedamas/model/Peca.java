@@ -12,9 +12,4 @@ public class Peca {
     public Cor getCor() {
         return cor;
     }
-
-    @Override
-    public String toString() {
-        return (cor == Cor.BRANCO ? "b" : "p");
-    }
 }

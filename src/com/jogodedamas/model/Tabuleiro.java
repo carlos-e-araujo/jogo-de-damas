@@ -18,19 +18,17 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
 
         for (int i = 0; i < (super.getLinhas() / 2) - 1; i++) {
-            for (int j = 0; j < super.getColunas(); j ++) {
+            for (int j = 0; j < super.getColunas(); j++) {
                 if (super.getCelula(i, j).getCor() == Cor.PRETO) {
-                    Comum comum = new Comum(Cor.BRANCO);
-                    super.getCelula(i, j).setPeca(comum);
+                    super.getCelula(i, j).setPeca(new Comum(Cor.BRANCO));
                 }
             }
         }
 
         for (int i = super.getLinhas() - 1; i > (super.getLinhas() / 2); i--) {
-            for (int j = 0; j < super.getColunas(); j ++) {
+            for (int j = 0; j < super.getColunas(); j++) {
                 if (super.getCelula(i, j).getCor() == Cor.PRETO) {
-                    Comum comum = new Comum(Cor.PRETO);
-                    super.getCelula(i, j).setPeca(comum);
+                    super.getCelula(i, j).setPeca(new Comum(Cor.PRETO));
                 }
             }
         }
