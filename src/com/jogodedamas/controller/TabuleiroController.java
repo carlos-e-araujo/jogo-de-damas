@@ -1,8 +1,8 @@
 package com.jogodedamas.controller;
 
 import com.jogodedamas.model.Celula;
-import com.jogodedamas.utils.Cor;
 import com.jogodedamas.model.Tabuleiro;
+import com.jogodedamas.utils.Cor;
 import com.jogodedamas.view.TabuleiroView;
 
 public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController<Celula> {
@@ -20,25 +20,31 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
         int linhaFinal = posicaoFinal[0];
         int colunaFinal = posicaoFinal[1];
 
-        Celula celula = tabuleiro.getCelula(linhaInicial, colunaInicial);
+        Celula celulaInicial = tabuleiro.getCelula(linhaInicial, colunaInicial);
+        Celula celulaFinal = tabuleiro.getCelula(linhaFinal, colunaFinal);
 
-        if (celula.getPeca().getCor() != corJogador) {
+        if (celulaFinal.getCor() == Cor.BRANCO) {
             view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
-        if (tabuleiro.getCelula(linhaFinal, colunaFinal).getPeca() != null) {
+        if (celulaInicial.getCor() == Cor.BRANCO) {
             view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
-        if (tabuleiro.getCelula(linhaFinal, colunaFinal).getCor() == Cor.BRANCO) {
+        if (celulaFinal.getPeca() != null) {
+            view.mostrarMensagem("Jogada invalida.");
+            return false;
+        }
+
+        if (celulaInicial.getPeca().getCor() != corJogador) {
             view.mostrarMensagem("Jogada invalida.");
             return false;
         }
 
         tabuleiro.setCelula(linhaInicial, colunaInicial, new Celula(Cor.PRETO));
-        realizarJogada(linhaFinal, colunaFinal, celula);
+        realizarJogada(linhaFinal, colunaFinal, celulaInicial);
 
         return true;
     }
