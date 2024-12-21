@@ -37,4 +37,8 @@ public class JogoDeDamasView {
 
         return pos;
     }
+
+    public void informarJogadaInvalida() {
+        System.out.println("Jogada invalida.");
+    }
 }
