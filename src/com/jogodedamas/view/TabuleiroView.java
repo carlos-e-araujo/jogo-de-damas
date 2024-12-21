@@ -17,6 +17,7 @@ public class TabuleiroView<T extends Celula> extends com.jogodetabuleiro.Tabulei
         int linhas = tabuleiro.getLinhas();
         int colunas = tabuleiro.getColunas();
 
+        System.out.println();
         for (int i = 0; i < linhas; i++) {
             for (int j = 0; j < colunas; j++) {
                 String saida;
@@ -25,10 +26,14 @@ public class TabuleiroView<T extends Celula> extends com.jogodetabuleiro.Tabulei
 
                 if (tabuleiro.getCelula(i, j).getPeca() == null) {
                     saida += " ";
-                } else if (tabuleiro.getCelula(i, j).getPeca() instanceof Dama) {
-                    saida += exibirDama(tabuleiro.getCelula(i, j).getPeca().getCor());
                 } else {
-                    saida += exibirComum(tabuleiro.getCelula(i, j).getPeca().getCor());
+                    saida += (tabuleiro.getCelula(i, j).getPeca().getCor() == Cor.PRETO) ? (ANSI_BLACK) : (ANSI_WHITE);
+
+                    if (tabuleiro.getCelula(i, j).getPeca() instanceof Dama) {
+                        saida += "◼";
+                    } else {
+                        saida += "●";
+                    }
                 }
 
                 saida += " " + ANSI_RESET;
@@ -38,13 +43,5 @@ public class TabuleiroView<T extends Celula> extends com.jogodetabuleiro.Tabulei
             System.out.println();
         }
         System.out.println();
-    }
-
-    private String exibirDama(final Cor cor) {
-        return ((cor == Cor.PRETO) ? (ANSI_BLACK) : (ANSI_WHITE)) + "◼";
-    }
-
-    private String exibirComum(final Cor cor) {
-        return ((cor == Cor.PRETO) ? (ANSI_BLACK) : (ANSI_WHITE)) + "●";
     }
 }
