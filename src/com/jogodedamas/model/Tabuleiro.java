@@ -33,4 +33,33 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
             }
         }
     }
+
+    public boolean verificarJogada(int linhaInicial, int colunaInicial, int linhaFinal, int colunaFinal,
+                                   Cor corJogador) {
+        if (!(linhaFinal >= 0 && linhaFinal < this.getLinhas() && colunaFinal >= 0 && colunaFinal < this.getColunas())) {
+            return false;
+        } else if (!(linhaInicial >= 0 && linhaInicial < this.getLinhas() && colunaInicial >= 0 && colunaInicial < this.getColunas())) {
+            return false;
+        } else if (this.getCelula(linhaInicial, colunaInicial).getPeca() == null) {
+            return false;
+        } else if (this.getCelula(linhaFinal, colunaFinal).getPeca() != null) {
+            return false;
+        } else if (this.getCelula(linhaFinal, colunaFinal).getCor() == Cor.BRANCO) {
+            return false;
+        } else if (this.getCelula(linhaInicial, colunaInicial).getCor() == Cor.BRANCO) {
+            return false;
+        } else return this.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == corJogador;
+    }
+
+    public void moverPeca(int linhaInicial, int colunaInicial, int linhaFinal, int colunaFinal) {
+        if ((this.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.PRETO) && (linhaFinal == 0)) {
+            this.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
+        } else if ((this.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.BRANCO) && (linhaFinal == (this.getLinhas() - 1))) {
+            this.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.BRANCO)));
+        } else {
+            this.setCelula(linhaFinal, colunaFinal, this.getCelula(linhaInicial, colunaInicial));
+        }
+
+        this.setCelula(linhaInicial, colunaInicial, new Celula(Cor.PRETO));
+    }
 }

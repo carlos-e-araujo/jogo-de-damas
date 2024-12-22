@@ -1,14 +1,16 @@
 package com.jogodedamas.controller;
 
 import com.jogodedamas.model.Celula;
-import com.jogodedamas.model.Dama;
 import com.jogodedamas.model.Tabuleiro;
 import com.jogodedamas.utils.Cor;
 import com.jogodedamas.view.TabuleiroView;
 
 public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController<Celula> {
+    Tabuleiro modelTabuleiro;
+
     public TabuleiroController(Tabuleiro tabuleiro, TabuleiroView<Celula> tabuleiroView) {
         super(tabuleiro, tabuleiroView);
+        this.modelTabuleiro = (Tabuleiro) this.tabuleiro;
     }
 
     public void exibirTabuleiro() {
@@ -21,32 +23,11 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
         int linhaFinal = posicaoFinal[0];
         int colunaFinal = posicaoFinal[1];
 
-        if (!(linhaFinal >= 0 && linhaFinal < tabuleiro.getLinhas() && colunaFinal >= 0 && colunaFinal < tabuleiro.getColunas())) {
-            return false;
-        } else if (!(linhaInicial >= 0 && linhaInicial < tabuleiro.getLinhas() && colunaInicial >= 0 && colunaInicial < tabuleiro.getColunas())) {
-            return false;
-        } else if (tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca() == null) {
-            return false;
-        } else if (tabuleiro.getCelula(linhaFinal, colunaFinal).getPeca() != null) {
-            return false;
-        } else if (tabuleiro.getCelula(linhaFinal, colunaFinal).getCor() == Cor.BRANCO) {
-            return false;
-        } else if (tabuleiro.getCelula(linhaInicial, colunaInicial).getCor() == Cor.BRANCO) {
-            return false;
-        } else if (tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca().getCor() != corJogador) {
+        if (!modelTabuleiro.verificarJogada(linhaInicial, colunaInicial, linhaFinal, colunaFinal, corJogador)) {
             return false;
         }
 
-        if ((tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.PRETO) && (linhaFinal == 0)) {
-            tabuleiro.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
-        } else if ((tabuleiro.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.BRANCO) && (linhaFinal == (tabuleiro.getLinhas() - 1))) {
-            tabuleiro.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.BRANCO)));
-        } else {
-            tabuleiro.setCelula(linhaFinal, colunaFinal, tabuleiro.getCelula(linhaInicial, colunaInicial));
-        }
-
-        tabuleiro.setCelula(linhaInicial, colunaInicial, new Celula(Cor.PRETO));
-
+        modelTabuleiro.moverPeca(linhaInicial, colunaInicial, linhaFinal, colunaFinal);
         return true;
     }
 }
