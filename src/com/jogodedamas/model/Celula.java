@@ -11,11 +11,6 @@ public class Celula {
         peca = null;
     }
 
-    public Celula(Cor cor, Peca peca) {
-        this.COR = cor;
-        this.peca = peca;
-    }
-
     public Cor getCor() {
         return this.COR;
     }

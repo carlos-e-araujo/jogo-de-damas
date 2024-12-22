@@ -35,34 +35,57 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
-    public boolean verificarJogada(Posicao posicaoInicial, Posicao posicaoFinal, Cor corJogador) {
-        if (!(posicaoFinal.getLinha() >= 0 && posicaoFinal.getLinha() < this.getLinhas() && posicaoFinal.getColuna() >= 0 && posicaoFinal.getColuna() < this.getColunas())) {
+    public boolean verificarJogada(Posicao origem, Posicao destino, Cor corJogador) {
+        Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+        Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
+
+        if (!((destino.getLinha() >= 0) && (destino.getLinha() < this.getLinhas()) && (destino.getColuna() >= 0) && (destino.getColuna() < this.getColunas()))) {
             return false;
-        } else if (!(posicaoInicial.getLinha() >= 0 && posicaoInicial.getLinha() < this.getLinhas() && posicaoInicial.getColuna() >= 0 && posicaoInicial.getColuna() < this.getColunas())) {
-            return false;
-        } else if (this.getCelula(posicaoInicial.getLinha(), posicaoInicial.getColuna()).getPeca() == null) {
-            return false;
-        } else if (this.getCelula(posicaoFinal.getLinha(), posicaoFinal.getColuna()).getPeca() != null) {
-            return false;
-        } else if (this.getCelula(posicaoFinal.getLinha(), posicaoFinal.getColuna()).getCor() == Cor.BRANCO) {
-            return false;
-        } else if (this.getCelula(posicaoInicial.getLinha(), posicaoInicial.getColuna()).getCor() == Cor.BRANCO) {
-            return false;
-        } else {
-            return this.getCelula(posicaoInicial.getLinha(), posicaoInicial.getColuna()).getPeca().getCor() == corJogador;
         }
+
+        if (!((origem.getLinha() >= 0) && (origem.getLinha() < this.getLinhas()) && (origem.getColuna() >= 0) && (origem.getColuna() < this.getColunas()))) {
+            return false;
+        }
+
+        if (celulaOrigem.getPeca() == null) {
+            return false;
+        }
+
+        if (celulaDestino.getPeca() != null) {
+            return false;
+        }
+
+        if (celulaOrigem.getCor() == Cor.BRANCO) {
+            return false;
+        }
+
+        if (celulaDestino.getCor() == Cor.BRANCO) {
+            return false;
+        }
+
+        return celulaOrigem.getPeca().getCor() == corJogador;
     }
 
     public void moverPeca(Posicao origem, Posicao destino) {
-        if ((this.getCelula(origem.getLinha(), origem.getColuna()).getPeca().getCor() == Cor.PRETO) && (destino.getLinha() == 0)) {
-            this.setCelula(0, destino.getColuna(), new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
-        } else if ((this.getCelula(origem.getLinha(), origem.getColuna()).getPeca().getCor() == Cor.BRANCO) && (destino.getLinha() == (this.getLinhas() - 1))) {
-            this.setCelula(destino.getLinha(), destino.getColuna(), new Celula(Cor.PRETO, new Dama(Cor.BRANCO)));
+        final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+        final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
+
+        if (verificarPromocao(origem, destino)) {
+            celulaDestino.setPeca(new Dama(celulaOrigem.getPeca().getCor()));
         } else {
-            this.setCelula(destino.getLinha(), destino.getColuna(), this.getCelula(origem.getLinha(),
-                origem.getColuna()));
+            celulaDestino.setPeca(celulaOrigem.getPeca());
         }
 
-        this.setCelula(origem.getLinha(), origem.getColuna(), new Celula(Cor.PRETO));
+        celulaOrigem.setPeca(null);
+    }
+
+    private boolean verificarPromocao(final Posicao origem, final Posicao destino) {
+        final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+
+        if (celulaOrigem.getPeca().getCor() == Cor.PRETO) {
+            return destino.getLinha() == 0;
+        } else {
+            return destino.getLinha() == (this.getLinhas() - 1);
+        }
     }
 }
