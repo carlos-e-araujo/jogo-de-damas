@@ -35,9 +35,9 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
-    public boolean verificarJogada(Posicao origem, Posicao destino, Cor corJogador) {
-        Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
-        Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
+    public boolean verificarJogada(final Posicao origem, final Posicao destino, final Cor corJogador) {
+        final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+        final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
 
         if (!((destino.getLinha() >= 0) && (destino.getLinha() < this.getLinhas()) && (destino.getColuna() >= 0) && (destino.getColuna() < this.getColunas()))) {
             return false;
@@ -66,7 +66,7 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         return celulaOrigem.getPeca().getCor() == corJogador;
     }
 
-    public void moverPeca(Posicao origem, Posicao destino) {
+    public void moverPeca(final Posicao origem, final Posicao destino) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
 
