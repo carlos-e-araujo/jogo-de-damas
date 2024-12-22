@@ -2,8 +2,10 @@ package com.jogodedamas.controller;
 
 import com.jogodedamas.model.JogoDeDamas;
 import com.jogodedamas.model.Tabuleiro;
-import com.jogodedamas.view.TabuleiroView;
+import com.jogodedamas.utils.Cor;
+import com.jogodedamas.utils.Posicao;
 import com.jogodedamas.view.JogoDeDamasView;
+import com.jogodedamas.view.TabuleiroView;
 
 public class JogoDeDamasController {
     private final JogoDeDamas jogoDeDamasModel;
@@ -17,17 +19,19 @@ public class JogoDeDamasController {
     }
 
     public void iniciarJogo() {
-        int[] posicaoIncial;
-        int[] posicaoFinal;
+        Posicao posicaoIncial;
+        Posicao posicaoFinal;
 
         while (true) {
-            this.jogoDeDamasView.exibirJogadorAtual(jogoDeDamasModel.getJogadorAtual().getCor());
+            final Cor corJogadorAtual = jogoDeDamasModel.getJogadorAtual().getCor();
+
+            this.jogoDeDamasView.exibirJogadorAtual(corJogadorAtual);
             tabuleiroController.exibirTabuleiro();
 
             posicaoIncial = jogoDeDamasView.solicitarPeca();
             posicaoFinal = jogoDeDamasView.solicitarMovimento();
 
-            if (tabuleiroController.realizarJogada(jogoDeDamasModel.getJogadorAtual().getCor(), posicaoIncial, posicaoFinal)) {
+            if (tabuleiroController.realizarJogada(corJogadorAtual, posicaoIncial, posicaoFinal)) {
                 jogoDeDamasModel.finalizarTurno();
             } else {
                 jogoDeDamasView.informarJogadaInvalida();

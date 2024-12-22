@@ -1,6 +1,7 @@
 package com.jogodedamas.model;
 
 import com.jogodedamas.utils.Cor;
+import com.jogodedamas.utils.Posicao;
 
 public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     private static final int DIMENSAO = 8;
@@ -34,32 +35,34 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
-    public boolean verificarJogada(int linhaInicial, int colunaInicial, int linhaFinal, int colunaFinal,
-                                   Cor corJogador) {
-        if (!(linhaFinal >= 0 && linhaFinal < this.getLinhas() && colunaFinal >= 0 && colunaFinal < this.getColunas())) {
+    public boolean verificarJogada(Posicao posicaoInicial, Posicao posicaoFinal, Cor corJogador) {
+        if (!(posicaoFinal.getLinha() >= 0 && posicaoFinal.getLinha() < this.getLinhas() && posicaoFinal.getColuna() >= 0 && posicaoFinal.getColuna() < this.getColunas())) {
             return false;
-        } else if (!(linhaInicial >= 0 && linhaInicial < this.getLinhas() && colunaInicial >= 0 && colunaInicial < this.getColunas())) {
+        } else if (!(posicaoInicial.getLinha() >= 0 && posicaoInicial.getLinha() < this.getLinhas() && posicaoInicial.getColuna() >= 0 && posicaoInicial.getColuna() < this.getColunas())) {
             return false;
-        } else if (this.getCelula(linhaInicial, colunaInicial).getPeca() == null) {
+        } else if (this.getCelula(posicaoInicial.getLinha(), posicaoInicial.getColuna()).getPeca() == null) {
             return false;
-        } else if (this.getCelula(linhaFinal, colunaFinal).getPeca() != null) {
+        } else if (this.getCelula(posicaoFinal.getLinha(), posicaoFinal.getColuna()).getPeca() != null) {
             return false;
-        } else if (this.getCelula(linhaFinal, colunaFinal).getCor() == Cor.BRANCO) {
+        } else if (this.getCelula(posicaoFinal.getLinha(), posicaoFinal.getColuna()).getCor() == Cor.BRANCO) {
             return false;
-        } else if (this.getCelula(linhaInicial, colunaInicial).getCor() == Cor.BRANCO) {
+        } else if (this.getCelula(posicaoInicial.getLinha(), posicaoInicial.getColuna()).getCor() == Cor.BRANCO) {
             return false;
-        } else return this.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == corJogador;
+        } else {
+            return this.getCelula(posicaoInicial.getLinha(), posicaoInicial.getColuna()).getPeca().getCor() == corJogador;
+        }
     }
 
-    public void moverPeca(int linhaInicial, int colunaInicial, int linhaFinal, int colunaFinal) {
-        if ((this.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.PRETO) && (linhaFinal == 0)) {
-            this.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
-        } else if ((this.getCelula(linhaInicial, colunaInicial).getPeca().getCor() == Cor.BRANCO) && (linhaFinal == (this.getLinhas() - 1))) {
-            this.setCelula(linhaFinal, colunaFinal, new Celula(Cor.PRETO, new Dama(Cor.BRANCO)));
+    public void moverPeca(Posicao origem, Posicao destino) {
+        if ((this.getCelula(origem.getLinha(), origem.getColuna()).getPeca().getCor() == Cor.PRETO) && (destino.getLinha() == 0)) {
+            this.setCelula(destino.getLinha(), destino.getColuna(), new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
+        } else if ((this.getCelula(origem.getLinha(), origem.getColuna()).getPeca().getCor() == Cor.BRANCO) && (destino.getLinha() == (this.getLinhas() - 1))) {
+            this.setCelula(destino.getLinha(), destino.getColuna(), new Celula(Cor.PRETO, new Dama(Cor.BRANCO)));
         } else {
-            this.setCelula(linhaFinal, colunaFinal, this.getCelula(linhaInicial, colunaInicial));
+            this.setCelula(destino.getLinha(), destino.getColuna(), this.getCelula(origem.getLinha(),
+                origem.getColuna()));
         }
 
-        this.setCelula(linhaInicial, colunaInicial, new Celula(Cor.PRETO));
+        this.setCelula(origem.getLinha(), origem.getColuna(), new Celula(Cor.PRETO));
     }
 }
