@@ -7,7 +7,7 @@ import com.jogodedamas.utils.Posicao;
 import com.jogodedamas.view.TabuleiroView;
 
 public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController<Celula> {
-    Tabuleiro modelTabuleiro;
+    private final Tabuleiro modelTabuleiro;
 
     public TabuleiroController(Tabuleiro tabuleiro, TabuleiroView<Celula> tabuleiroView) {
         super(tabuleiro, tabuleiroView);

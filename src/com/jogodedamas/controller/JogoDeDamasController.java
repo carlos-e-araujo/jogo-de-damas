@@ -22,6 +22,8 @@ public class JogoDeDamasController {
         Posicao posicaoIncial;
         Posicao posicaoFinal;
 
+        tabuleiroController.iniciarJogo();
+
         while (true) {
             final Cor corJogadorAtual = jogoDeDamasModel.getJogadorAtual().getCor();
 
