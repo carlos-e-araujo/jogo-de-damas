@@ -55,7 +55,7 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
 
     public void moverPeca(Posicao origem, Posicao destino) {
         if ((this.getCelula(origem.getLinha(), origem.getColuna()).getPeca().getCor() == Cor.PRETO) && (destino.getLinha() == 0)) {
-            this.setCelula(destino.getLinha(), destino.getColuna(), new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
+            this.setCelula(0, destino.getColuna(), new Celula(Cor.PRETO, new Dama(Cor.PRETO)));
         } else if ((this.getCelula(origem.getLinha(), origem.getColuna()).getPeca().getCor() == Cor.BRANCO) && (destino.getLinha() == (this.getLinhas() - 1))) {
             this.setCelula(destino.getLinha(), destino.getColuna(), new Celula(Cor.PRETO, new Dama(Cor.BRANCO)));
         } else {

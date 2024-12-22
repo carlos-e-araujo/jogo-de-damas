@@ -12,9 +12,9 @@ public class JogoDeDamasController {
     private final JogoDeDamasView jogoDeDamasView;
     private final TabuleiroController tabuleiroController;
 
-    public JogoDeDamasController(JogoDeDamas jogoDeDamasModel) {
+    public JogoDeDamasController(JogoDeDamas jogoDeDamasModel, JogoDeDamasView jogoDeDamasView) {
         this.jogoDeDamasModel = jogoDeDamasModel;
-        this.jogoDeDamasView = new JogoDeDamasView();
+        this.jogoDeDamasView = jogoDeDamasView;
         this.tabuleiroController = new TabuleiroController(new Tabuleiro(), new TabuleiroView<>());
     }
 
