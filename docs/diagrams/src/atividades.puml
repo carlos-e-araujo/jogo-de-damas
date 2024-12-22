@@ -37,7 +37,7 @@ repeat
         :converter a peça selecionada em dama;
     endif
 
-    :verificar se houve uma vitoria ou empate;
+    :verificar se houve uma vitória ou empate;
 repeat while (é o fim do jogo?) is (não)
 
 :exibe o nome do vencedor;
