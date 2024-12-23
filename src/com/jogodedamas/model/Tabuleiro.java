@@ -38,6 +38,7 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     public boolean verificarJogada(final Posicao origem, final Posicao destino, final Cor corJogador) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
+        final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
 
         if (!((destino.getLinha() >= 0) && (destino.getLinha() < this.getLinhas()) && (destino.getColuna() >= 0) && (destino.getColuna() < this.getColunas()))) {
             return false;
@@ -63,6 +64,10 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
             return false;
         }
 
+        if (verificarCaptura(origem, destino)) {
+            return celulaCaptura.getPeca().getCor() != corJogador;
+        }
+
         return celulaOrigem.getPeca().getCor() == corJogador;
     }
 
@@ -70,22 +75,37 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
 
-        if (verificarPromocao(origem, destino)) {
-            celulaDestino.setPeca(new Dama(celulaOrigem.getPeca().getCor()));
-        } else {
-            celulaDestino.setPeca(celulaOrigem.getPeca());
-        }
-
+        celulaDestino.setPeca(celulaOrigem.getPeca());
         celulaOrigem.setPeca(null);
     }
 
-    private boolean verificarPromocao(final Posicao origem, final Posicao destino) {
-        final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+    public boolean verificarCaptura(final Posicao origem, final Posicao destino) {
+        final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
 
-        if (celulaOrigem.getPeca().getCor() == Cor.PRETO) {
-            return destino.getLinha() == 0;
-        } else {
-            return destino.getLinha() == (this.getLinhas() - 1);
+        if (Math.abs(destino.getLinha() - origem.getLinha()) == 2 && Math.abs(destino.getColuna() - origem.getColuna()) == 2) {
+            return celulaCaptura.getPeca() != null;
         }
+
+        return false;
+    }
+
+    public void realizarCaptura(final Posicao origem, final Posicao destino) {
+        final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
+        celulaCaptura.setPeca(null);
+    }
+
+    public boolean verificarPromocao(final Posicao posicao) {
+        final Celula celula = this.getCelula(posicao.getLinha(), posicao.getColuna());
+
+        if (celula.getPeca().getCor() == Cor.PRETO) {
+            return posicao.getLinha() == 0;
+        } else {
+            return posicao.getLinha() == (this.getLinhas() - 1);
+        }
+    }
+
+    public void realizarPromocao(final Posicao posicao) {
+        final Celula celula = this.getCelula(posicao.getLinha(), posicao.getColuna());
+        celula.setPeca(new Dama(celula.getPeca().getCor()));
     }
 }
