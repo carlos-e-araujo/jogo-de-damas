@@ -19,8 +19,8 @@ public class JogoDeDamasController {
     }
 
     public void iniciarJogo() {
-        Posicao posicaoIncial;
-        Posicao posicaoFinal;
+        Posicao origem;
+        Posicao destino;
 
         tabuleiroController.iniciarJogo();
 
@@ -30,10 +30,10 @@ public class JogoDeDamasController {
             this.jogoDeDamasView.exibirJogadorAtual(corJogadorAtual);
             tabuleiroController.exibirTabuleiro();
 
-            posicaoIncial = jogoDeDamasView.solicitarPeca();
-            posicaoFinal = jogoDeDamasView.solicitarMovimento();
+            origem = jogoDeDamasView.solicitarPeca();
+            destino = jogoDeDamasView.solicitarMovimento();
 
-            if (tabuleiroController.realizarJogada(corJogadorAtual, posicaoIncial, posicaoFinal)) {
+            if (tabuleiroController.realizarJogada(origem, destino, corJogadorAtual)) {
                 jogoDeDamasModel.finalizarTurno();
             } else {
                 jogoDeDamasView.informarJogadaInvalida();
