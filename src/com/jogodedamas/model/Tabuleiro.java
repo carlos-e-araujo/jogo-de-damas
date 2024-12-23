@@ -91,6 +91,18 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
             }
         }
 
+        if ((celulaOrigem.getPeca() instanceof Comum) && (celulaOrigem.getPeca().getCor() == Cor.PRETO) && !verificarCaptura(origem, destino)) {
+            if (destino.getLinha() >= origem.getLinha()) {
+                return false;
+            }
+        }
+
+        if ((celulaOrigem.getPeca() instanceof Comum) && (celulaOrigem.getPeca().getCor() == Cor.BRANCO) && !verificarCaptura(origem, destino)) {
+            if (destino.getLinha() <= origem.getLinha()) {
+                return false;
+            }
+        }
+
         return celulaOrigem.getPeca().getCor() == corJogador;
     }
 
