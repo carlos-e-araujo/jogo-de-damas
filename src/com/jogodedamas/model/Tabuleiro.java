@@ -38,7 +38,6 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     public boolean verificarMovimento(final Posicao origem, final Posicao destino, final Cor corJogador) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
-        final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
 
         if (!((destino.getLinha() >= 0) && (destino.getLinha() < this.getLinhas()) && (destino.getColuna() >= 0) && (destino.getColuna() < this.getColunas()))) {
             return false;
@@ -65,7 +64,31 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
 
         if (verificarCaptura(origem, destino)) {
-            return celulaCaptura.getPeca().getCor() != corJogador;
+            return true;
+        }
+
+        // Impede a dama de passar sobre uma peça aliada.
+        if (celulaOrigem.getPeca() instanceof Dama) {
+            final int deltaLinha = destino.getLinha() - origem.getLinha();
+            final int deltaColuna = destino.getColuna() - origem.getColuna();
+
+            if (celulaOrigem.getPeca() instanceof Dama) {
+                int linha = origem.getLinha();
+                int coluna = origem.getColuna();
+
+                while (linha != destino.getLinha() && coluna != destino.getColuna()) {
+                    linha += Integer.signum(deltaLinha);
+                    coluna += Integer.signum(deltaColuna);
+
+                    final Celula celulaAtual = this.getCelula(linha, coluna);
+
+                    if (celulaAtual.getPeca() != null) {
+                        if (celulaAtual.getPeca().getCor() == celulaOrigem.getPeca().getCor()) {
+                            return false;
+                        }
+                    }
+                }
+            }
         }
 
         return celulaOrigem.getPeca().getCor() == corJogador;
@@ -80,13 +103,49 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     }
 
     public boolean verificarCaptura(final Posicao origem, final Posicao destino) {
-        final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
+        final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+        final int deltaLinha = destino.getLinha() - origem.getLinha();
+        final int deltaColuna = destino.getColuna() - origem.getColuna();
 
-        if (Math.abs(destino.getLinha() - origem.getLinha()) == 2 && Math.abs(destino.getColuna() - origem.getColuna()) == 2) {
-            return celulaCaptura.getPeca() != null;
+        if (celulaOrigem.getPeca() instanceof Dama) {
+            if (Math.abs(deltaLinha) != Math.abs(deltaColuna)) {
+                return false;
+            }
+
+            int linha = origem.getLinha();
+            int coluna = origem.getColuna();
+            int capturas = 0;
+
+            while (linha != destino.getLinha() && coluna != destino.getColuna()) {
+                linha += Integer.signum(deltaLinha);
+                coluna += Integer.signum(deltaColuna);
+
+                final Celula celulaAtual = this.getCelula(linha, coluna);
+
+                if (celulaAtual.getPeca() != null) {
+                    if (celulaAtual.getPeca().getCor() == celulaOrigem.getPeca().getCor()) {
+                        return false;
+                    }
+
+                    capturas++;
+
+                    if (capturas > 1) {
+                        return false;
+
+                    }
+                }
+            }
+
+            return capturas == 1;
+        } else {
+            final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
+
+            if (Math.abs(destino.getLinha() - origem.getLinha()) == 2 && Math.abs(destino.getColuna() - origem.getColuna()) == 2) {
+                return celulaCaptura.getPeca() != null && celulaCaptura.getPeca().getCor() != celulaOrigem.getPeca().getCor();
+            }
+
+            return false;
         }
-
-        return false;
     }
 
     public boolean verificarPasso(final Posicao origem, final Posicao destino) {
@@ -106,8 +165,29 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     }
 
     public void realizarCaptura(final Posicao origem, final Posicao destino) {
-        final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
-        celulaCaptura.setPeca(null);
+        final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+        final int deltaLinha = destino.getLinha() - origem.getLinha();
+        final int deltaColuna = destino.getColuna() - origem.getColuna();
+
+        if (celulaOrigem.getPeca() instanceof Dama) {
+            int linha = origem.getLinha();
+            int coluna = origem.getColuna();
+
+            while (linha != destino.getLinha() && coluna != destino.getColuna()) {
+                linha += Integer.signum(deltaLinha);
+                coluna += Integer.signum(deltaColuna);
+
+                final Celula celulaAtual = this.getCelula(linha, coluna);
+
+                if (celulaAtual.getPeca() != null && celulaAtual.getPeca().getCor() != celulaOrigem.getPeca().getCor()) {
+                    celulaAtual.setPeca(null);
+                    break;
+                }
+            }
+        } else {
+            final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
+            celulaCaptura.setPeca(null);
+        }
     }
 
     public boolean verificarPromocao(final Posicao posicao) {
