@@ -24,7 +24,7 @@ public class JogoDeDamasController {
 
         tabuleiroController.iniciarJogo();
 
-        while (true) {
+        while (!tabuleiroController.verificarFimDeJogo()) {
             final Cor corJogadorAtual = jogoDeDamasModel.getJogadorAtual().getCor();
 
             this.jogoDeDamasView.exibirJogadorAtual(corJogadorAtual);
@@ -39,5 +39,9 @@ public class JogoDeDamasController {
                 jogoDeDamasView.informarJogadaInvalida();
             }
         }
+
+        jogoDeDamasView.informarVencedor(tabuleiroController.getCorComMaisPecas());
+        tabuleiroController.exibirTabuleiro();
+        tabuleiroController.finalizarJogo();
     }
 }

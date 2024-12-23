@@ -37,4 +37,12 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
 
         return true;
     }
+
+    public boolean verificarFimDeJogo() {
+        return modelTabuleiro.verificarFimDeJogo();
+    }
+
+    public Cor getCorComMaisPecas() {
+        return (modelTabuleiro.getQtdPecasBrancas() > modelTabuleiro.getQtdPecasPretas()) ? Cor.BRANCO : Cor.PRETO;
+    }
 }

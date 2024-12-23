@@ -5,6 +5,8 @@ import com.jogodedamas.utils.Posicao;
 
 public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     private static final int DIMENSAO = 8;
+    private int qtdPecasBrancas = 0;
+    private int qtdPecasPretas = 0;
 
     public Tabuleiro() {
         super(DIMENSAO, DIMENSAO);
@@ -22,6 +24,7 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
             for (int j = 0; j < super.getColunas(); j++) {
                 if (super.getCelula(i, j).getCor() == Cor.PRETO) {
                     super.getCelula(i, j).setPeca(new Comum(Cor.BRANCO));
+                    qtdPecasBrancas++;
                 }
             }
         }
@@ -30,6 +33,7 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
             for (int j = 0; j < super.getColunas(); j++) {
                 if (super.getCelula(i, j).getCor() == Cor.PRETO) {
                     super.getCelula(i, j).setPeca(new Comum(Cor.PRETO));
+                    qtdPecasPretas++;
                 }
             }
         }
@@ -198,12 +202,25 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
                 final Celula celulaAtual = this.getCelula(linha, coluna);
 
                 if (celulaAtual.getPeca() != null && celulaAtual.getPeca().getCor() != celulaOrigem.getPeca().getCor()) {
+                    if (celulaAtual.getPeca().getCor() == Cor.PRETO) {
+                        qtdPecasPretas--;
+                    } else {
+                        qtdPecasBrancas--;
+                    }
+
                     celulaAtual.setPeca(null);
                     break;
                 }
             }
         } else {
             final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
+
+            if (celulaCaptura.getPeca().getCor() == Cor.PRETO) {
+                qtdPecasPretas--;
+            } else {
+                qtdPecasBrancas--;
+            }
+
             celulaCaptura.setPeca(null);
         }
     }
@@ -221,5 +238,17 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     public void realizarPromocao(final Posicao posicao) {
         final Celula celula = this.getCelula(posicao.getLinha(), posicao.getColuna());
         celula.setPeca(new Dama(celula.getPeca().getCor()));
+    }
+
+    public boolean verificarFimDeJogo() {
+        return (qtdPecasPretas <= 0) || (qtdPecasBrancas <= 0);
+    }
+
+    public int getQtdPecasBrancas() {
+        return qtdPecasBrancas;
+    }
+
+    public int getQtdPecasPretas() {
+        return qtdPecasPretas;
     }
 }
