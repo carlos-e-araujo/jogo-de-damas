@@ -19,15 +19,17 @@ public class TabuleiroController extends com.jogodetabuleiro.TabuleiroController
     }
 
     public boolean realizarJogada(Posicao origem, Posicao destino, Cor corJogador) {
-        if (!modelTabuleiro.verificarJogada(origem, destino, corJogador)) {
+        if (!modelTabuleiro.verificarMovimento(origem, destino, corJogador)) {
             return false;
         }
 
-        modelTabuleiro.moverPeca(origem, destino);
-
         if (modelTabuleiro.verificarCaptura(origem, destino)) {
             modelTabuleiro.realizarCaptura(origem, destino);
+        } else if (!modelTabuleiro.verificarPasso(origem, destino)) {
+            return false;
         }
+
+        modelTabuleiro.realizarMovimento(origem, destino);
 
         if (modelTabuleiro.verificarPromocao(destino)) {
             modelTabuleiro.realizarPromocao(destino);

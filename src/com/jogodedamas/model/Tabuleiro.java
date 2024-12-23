@@ -35,7 +35,7 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
-    public boolean verificarJogada(final Posicao origem, final Posicao destino, final Cor corJogador) {
+    public boolean verificarMovimento(final Posicao origem, final Posicao destino, final Cor corJogador) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
         final Celula celulaCaptura = this.getCelula((origem.getLinha() + destino.getLinha()) / 2, (origem.getColuna() + destino.getColuna()) / 2);
@@ -71,7 +71,7 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         return celulaOrigem.getPeca().getCor() == corJogador;
     }
 
-    public void moverPeca(final Posicao origem, final Posicao destino) {
+    public void realizarMovimento(final Posicao origem, final Posicao destino) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
 
@@ -84,6 +84,22 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
 
         if (Math.abs(destino.getLinha() - origem.getLinha()) == 2 && Math.abs(destino.getColuna() - origem.getColuna()) == 2) {
             return celulaCaptura.getPeca() != null;
+        }
+
+        return false;
+    }
+
+    public boolean verificarPasso(final Posicao origem, final Posicao destino) {
+        final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
+
+        for (int i = -celulaOrigem.getPeca().getPasso(); i <= celulaOrigem.getPeca().getPasso(); i++) {
+            if (((origem.getLinha() + i) == destino.getLinha()) && ((origem.getColuna() + i) == destino.getColuna())) {
+                return true;
+            }
+
+            if (((origem.getLinha() + i) == destino.getLinha()) && ((origem.getColuna() - i) == destino.getColuna())) {
+                return true;
+            }
         }
 
         return false;

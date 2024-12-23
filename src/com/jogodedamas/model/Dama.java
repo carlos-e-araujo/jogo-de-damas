@@ -4,6 +4,6 @@ import com.jogodedamas.utils.Cor;
 
 public class Dama extends Peca {
     public Dama(Cor cor) {
-        super(cor);
+        super(cor, 7);
     }
 }
