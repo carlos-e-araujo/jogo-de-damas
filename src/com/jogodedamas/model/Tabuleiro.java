@@ -67,23 +67,30 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
             return true;
         }
 
-        // Impede a dama de passar sobre uma peça aliada.
+        // Impede a dama de tentar "capturar" uma peça aliada ou mais de uma peça inimiga.
         if (celulaOrigem.getPeca() instanceof Dama) {
             final int deltaLinha = destino.getLinha() - origem.getLinha();
             final int deltaColuna = destino.getColuna() - origem.getColuna();
 
-            if (celulaOrigem.getPeca() instanceof Dama) {
-                int linha = origem.getLinha();
-                int coluna = origem.getColuna();
+            int linha = origem.getLinha();
+            int coluna = origem.getColuna();
+            int capturas = 0;
 
-                while (linha != destino.getLinha() && coluna != destino.getColuna()) {
-                    linha += Integer.signum(deltaLinha);
-                    coluna += Integer.signum(deltaColuna);
+            while (linha != destino.getLinha() && coluna != destino.getColuna()) {
+                linha += Integer.signum(deltaLinha);
+                coluna += Integer.signum(deltaColuna);
 
-                    final Celula celulaAtual = this.getCelula(linha, coluna);
+                final Celula celulaAtual = this.getCelula(linha, coluna);
 
-                    if (celulaAtual.getPeca() != null) {
-                        if (celulaAtual.getPeca().getCor() == celulaOrigem.getPeca().getCor()) {
+                if (celulaAtual.getPeca() != null) {
+                    if (celulaAtual.getPeca().getCor() == celulaOrigem.getPeca().getCor()) {
+                        return false;
+                    }
+
+                    if (celulaAtual.getPeca().getCor() != celulaOrigem.getPeca().getCor()) {
+                        capturas++;
+
+                        if (capturas > 1) {
                             return false;
                         }
                     }
@@ -143,7 +150,6 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
 
                     if (capturas > 1) {
                         return false;
-
                     }
                 }
             }
