@@ -3,11 +3,25 @@ package com.jogodedamas.model;
 import com.jogodedamas.utils.Cor;
 import com.jogodedamas.utils.Posicao;
 
+/**
+ * Classe Tabuleiro
+ * Representa um tabuleiro de um jogo de damas.
+ *
+ * <p>A classe oferece diversos métodos que implementam as regras de um jogo de damas</p>
+ *
+ * @author Carlos
+ * @author Isaias
+ * @version 1.0
+ * @since 2024
+ */
 public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     private static final int DIMENSAO = 8;
     private int qtdPecasBrancas = 0;
     private int qtdPecasPretas = 0;
 
+    /**
+     * <p>Construtor do Tabuleiro</p>
+     */
     public Tabuleiro() {
         super(DIMENSAO, DIMENSAO);
 
@@ -39,6 +53,14 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
+    /**
+     * <p>Efetua diversas verificações para garantir que o movimento de peça realizado no tabuleiro é valido.</p>
+     *
+     * @param origem     Posição inicial da peça escolhida.
+     * @param destino    Posição final para a peça escolhida.
+     * @param corJogador Cor do jogador.
+     * @return true se o movimento é valido e false se o movimento for invalido.
+     */
     public boolean verificarMovimento(final Posicao origem, final Posicao destino, final Cor corJogador) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
@@ -117,6 +139,12 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         return celulaOrigem.getPeca().getCor() == corJogador;
     }
 
+    /**
+     * <p>Remove a peça da posição de origem e atribui ela a posição de destino.</p>
+     *
+     * @param origem  Posição inicial da peça escolhida.
+     * @param destino Posição final para a peça escolhida.
+     */
     public void realizarMovimento(final Posicao origem, final Posicao destino) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final Celula celulaDestino = this.getCelula(destino.getLinha(), destino.getColuna());
@@ -125,6 +153,13 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         celulaOrigem.setPeca(null);
     }
 
+    /**
+     * <p>Verifica se é possível realizar uma captura conforme as regras do jogo de damas.</p>
+     *
+     * @param origem  Posição inicial da peça escolhida.
+     * @param destino Posição final para a peça escolhida.
+     * @return true se a captura é possível e false caso contrario.
+     */
     public boolean verificarCaptura(final Posicao origem, final Posicao destino) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final int deltaLinha = destino.getLinha() - origem.getLinha();
@@ -170,6 +205,13 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
+    /**
+     * <p>Verifica se uma peça consegue se mover entre a origem e o destino.</p>
+     *
+     * @param origem  Posição inicial da peça escolhida.
+     * @param destino Posição final para a peça escolhida.
+     * @return true se a peça consegue se mover e false caso contrario.
+     */
     public boolean verificarPasso(final Posicao origem, final Posicao destino) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
 
@@ -186,6 +228,12 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         return false;
     }
 
+    /**
+     * <p>Efetua a captura de UMA peça localizada entre a posição de origem e a posição de destino</p>
+     *
+     * @param origem  Posição inicial da peça escolhida.
+     * @param destino Posição final para a peça escolhida.
+     */
     public void realizarCaptura(final Posicao origem, final Posicao destino) {
         final Celula celulaOrigem = this.getCelula(origem.getLinha(), origem.getColuna());
         final int deltaLinha = destino.getLinha() - origem.getLinha();
@@ -225,6 +273,12 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
+    /**
+     * <p>Verifica se uma peça comum pode ser promovida a dama.</p>
+     *
+     * @param posicao Posição da célula onde será feita a verificação.
+     * @return true se a promoção for possível e false caso contrario.
+     */
     public boolean verificarPromocao(final Posicao posicao) {
         final Celula celula = this.getCelula(posicao.getLinha(), posicao.getColuna());
 
@@ -235,19 +289,39 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
         }
     }
 
+    /**
+     * <p>Realiza a promoção de uma peça comum para dama.</p>
+     *
+     * @param posicao Posição da peça a ser promovida.
+     */
     public void realizarPromocao(final Posicao posicao) {
         final Celula celula = this.getCelula(posicao.getLinha(), posicao.getColuna());
         celula.setPeca(new Dama(celula.getPeca().getCor()));
     }
 
+    /**
+     * <p>Verifica se o jogo chegou ao fim (algum jogador ficou sem peças).</p>
+     *
+     * @return true caso o jogo esteja finalizado e false caso contrario.
+     */
     public boolean verificarFimDeJogo() {
         return (qtdPecasPretas <= 0) || (qtdPecasBrancas <= 0);
     }
 
+    /**
+     * <p>Retorna o número total de peças brancas no tabuleiro.</p>
+     *
+     * @return Número total de peças brancas.
+     */
     public int getQtdPecasBrancas() {
         return qtdPecasBrancas;
     }
 
+    /**
+     * <p>Retorna o número total de peças pretas no tabuleiro.</p>
+     *
+     * @return Número total de peças pretas.
+     */
     public int getQtdPecasPretas() {
         return qtdPecasPretas;
     }

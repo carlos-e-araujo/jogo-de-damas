@@ -1,5 +1,16 @@
 package com.jogodedamas.utils;
 
+/**
+ * Enumeração Posicao
+ * Representa as posições no tabuleiro de um jogo de damas.
+ *
+ * <p>Cada posição é representada por uma linha e uma coluna.</p>
+ *
+ * @author Carlos
+ * @author Isaias
+ * @version 1.0
+ * @since 2024
+ */
 public enum Posicao {
     A1(0, 0), A2(0, 1), A3(0, 2), A4(0, 3), A5(0, 4), A6(0, 5), A7(0, 6), A8(0, 7), B1(1, 0), B2(1, 1), B3(1, 2),
     B4(1, 3), B5(1, 4), B6(1, 5), B7(1, 6), B8(1, 7), C1(2, 0), C2(2, 1), C3(2, 2), C4(2, 3), C5(2, 4), C6(2, 5),
@@ -11,15 +22,31 @@ public enum Posicao {
     private final int linha;
     private final int coluna;
 
+    /**
+     * Construtor Posicao
+     *
+     * @param linha  Linha da posição no tabuleiro.
+     * @param coluna Coluna da posição no tabuleiro.
+     */
     Posicao(int linha, int coluna) {
         this.linha = linha;
         this.coluna = coluna;
     }
 
+    /**
+     * Retorna a linha da posição.
+     *
+     * @return Linha da posição.
+     */
     public int getLinha() {
         return linha;
     }
 
+    /**
+     * Retorna a coluna da posição.
+     *
+     * @return Coluna da posição.
+     */
     public int getColuna() {
         return coluna;
     }

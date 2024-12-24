@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"com.jogodedamas.controller"},{"l":"com.jogodedamas.model"},{"l":"com.jogodedamas.utils"},{"l":"com.jogodedamas.view"}];updateSearchResults();
