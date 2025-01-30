@@ -34,10 +34,15 @@ public class JogoDeDamasView {
      * @return A posição da peça escolhida pelo jogador.
      */
     public Posicao solicitarPeca() {
-        Posicao posicao;
+        Posicao posicao = null;
 
-        System.out.print("Escolha uma peça no tabuleiro (ex: A2): ");
-        posicao = Posicao.valueOf(scanner.nextLine());
+        while (posicao == null) {
+            try {
+                System.out.print("Escolha uma peça no tabuleiro (ex: A2): ");
+                posicao = Posicao.valueOf(scanner.nextLine());
+            } catch (Exception ignored) {
+            }
+        }
 
         return posicao;
     }
@@ -48,10 +53,15 @@ public class JogoDeDamasView {
      * @return A posição de destino escolhida pelo jogador.
      */
     public Posicao solicitarMovimento() {
-        Posicao posicao;
+        Posicao posicao = null;
 
-        System.out.print("Informe a posição que deseja mover a peça (ex: B3): ");
-        posicao = Posicao.valueOf(scanner.nextLine());
+        while (posicao == null) {
+            try {
+                System.out.print("Informe a posição que deseja mover a peça (ex: B3): ");
+                posicao = Posicao.valueOf(scanner.nextLine());
+            } catch (IllegalArgumentException ignored) {
+            }
+        }
 
         return posicao;
     }
