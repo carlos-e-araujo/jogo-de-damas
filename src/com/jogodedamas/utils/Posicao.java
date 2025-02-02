@@ -12,6 +12,7 @@ package com.jogodedamas.utils;
  * @since 2024
  */
 public enum Posicao {
+    INVALIDA(-1, -1),
     A1(0, 0),
     A2(0, 1),
     A3(0, 2),
@@ -87,8 +88,13 @@ public enum Posicao {
      * @param coluna Coluna da posição no tabuleiro.
      */
     Posicao(int linha, int coluna) {
-        this.linha = linha;
-        this.coluna = coluna;
+        if(linha >= 0 && linha < 8 && coluna >= 0 && coluna < 8) {
+            this.linha = linha;
+            this.coluna = coluna;
+        } else {
+            this.linha = -1;
+            this.coluna = -1;
+        }
     }
 
     /**

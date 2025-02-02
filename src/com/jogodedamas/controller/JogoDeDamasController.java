@@ -41,8 +41,8 @@ public class JogoDeDamasController {
      * <p>Este método exibe o tabuleiro, solicita jogadas dos jogadores e alterna os turnos até que o jogo termine.</p>
      */
     public void iniciarJogo() {
-        Posicao origem;
-        Posicao destino;
+        Posicao origem = null;
+        Posicao destino = null;
 
         tabuleiroController.iniciarJogo();
 
@@ -52,8 +52,13 @@ public class JogoDeDamasController {
             this.jogoDeDamasView.exibirJogadorAtual(corJogadorAtual);
             tabuleiroController.exibirTabuleiro();
 
-            origem = jogoDeDamasView.solicitarPeca();
-            destino = jogoDeDamasView.solicitarMovimento();
+            while (origem == null || origem == Posicao.INVALIDA) {
+                origem = jogoDeDamasView.solicitarPeca();
+            }
+
+            while (destino == null || destino == Posicao.INVALIDA) {
+                destino = jogoDeDamasView.solicitarMovimento();
+            }
 
             if (tabuleiroController.realizarJogada(origem, destino, corJogadorAtual)) {
                 jogoDeDamasModel.finalizarTurno();
