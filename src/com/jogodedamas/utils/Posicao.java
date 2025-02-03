@@ -114,4 +114,13 @@ public enum Posicao {
     public int getColuna() {
         return coluna;
     }
+
+    public static Posicao toPosicao(int linha, int coluna) {
+        for (Posicao posicao : Posicao.values()) {
+            if (posicao.getLinha() == linha && posicao.getColuna() == coluna) {
+                return posicao;
+            }
+        }
+        return Posicao.INVALIDA;
+    }
 }
