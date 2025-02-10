@@ -88,13 +88,30 @@ public enum Posicao {
      * @param coluna Coluna da posição no tabuleiro.
      */
     Posicao(int linha, int coluna) {
-        if(linha >= 0 && linha < 8 && coluna >= 0 && coluna < 8) {
+        if (linha >= 0 && linha < 8 && coluna >= 0 && coluna < 8) {
             this.linha = linha;
             this.coluna = coluna;
         } else {
             this.linha = -1;
             this.coluna = -1;
         }
+    }
+
+    /**
+     * Converte doi números inteiros para o tipo Posição.
+     *
+     * @param l  Linha.
+     * @param c Coluna.
+     * @return Posição.
+     */
+    public static Posicao toPosicao(int l, int c) {
+        for (Posicao posicao : Posicao.values()) {
+            if (posicao.getLinha() == l && posicao.getColuna() == c) {
+                return posicao;
+            }
+        }
+
+        return Posicao.INVALIDA;
     }
 
     /**
@@ -113,14 +130,5 @@ public enum Posicao {
      */
     public int getColuna() {
         return coluna;
-    }
-
-    public static Posicao toPosicao(int linha, int coluna) {
-        for (Posicao posicao : Posicao.values()) {
-            if (posicao.getLinha() == linha && posicao.getColuna() == coluna) {
-                return posicao;
-            }
-        }
-        return Posicao.INVALIDA;
     }
 }
