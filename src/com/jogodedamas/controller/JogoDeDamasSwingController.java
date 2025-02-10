@@ -31,11 +31,9 @@ public class JogoDeDamasSwingController {
             tabuleiroController.exibirTabuleiro();
 
             while (origem == null || origem == Posicao.INVALIDA) {
-                origem = jogoDeDamasView.solicitarPeca();
             }
 
             while (destino == null || destino == Posicao.INVALIDA) {
-                destino = jogoDeDamasView.solicitarMovimento();
             }
 
             if (tabuleiroController.realizarJogada(origem, destino, corJogadorAtual)) {

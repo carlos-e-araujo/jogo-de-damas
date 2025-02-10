@@ -5,8 +5,7 @@ import com.jogodedamas.utils.Cor;
 import com.jogodedamas.utils.Posicao;
 import com.jogodedamas.view.TabuleiroSwingView;
 
-public class TabuleiroSwingController
-{
+public class TabuleiroSwingController {
     Tabuleiro modelTabuleiro;
     TabuleiroSwingView view;
 
