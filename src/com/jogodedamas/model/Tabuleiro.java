@@ -18,6 +18,8 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
     private static final int DIMENSAO = 8;
     private int qtdPecasBrancas = 0;
     private int qtdPecasPretas = 0;
+    private Posicao origem;
+    private Posicao destino;
 
     /**
      * <p>Construtor do Tabuleiro</p>
@@ -324,5 +326,28 @@ public class Tabuleiro extends com.jogodetabuleiro.Tabuleiro<Celula> {
      */
     public int getQtdPecasPretas() {
         return qtdPecasPretas;
+    }
+
+    public Posicao getOrigem() {
+        return origem;
+    }
+
+    public void setOrigem(Posicao origem) {
+        this.origem = origem;
+        System.out.println("Origem: " + origem);
+    }
+
+    public Posicao getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Posicao destino) {
+        this.destino = destino;
+        System.out.println("Destino: " + destino);
+    }
+
+    public void restOrigemDestino() {
+        this.origem = null;
+        this.destino = null;
     }
 }

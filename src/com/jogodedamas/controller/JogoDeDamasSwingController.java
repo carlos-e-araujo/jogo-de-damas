@@ -31,10 +31,20 @@ public class JogoDeDamasSwingController {
             tabuleiroController.exibirTabuleiro();
 
             while (origem == null || origem == Posicao.INVALIDA) {
+                origem = tabuleiroController.getPosicaoSelecionada();
+                if (origem != Posicao.INVALIDA) {
+                    System.out.println("origem: " + origem.toString());
+                }
             }
+            tabuleiroController.resetPosicaoSelecionada();
 
             while (destino == null || destino == Posicao.INVALIDA) {
+                destino = tabuleiroController.getPosicaoSelecionada();
+                if (destino != Posicao.INVALIDA) {
+                    System.out.println("destino: " + destino.toString());
+                }
             }
+            tabuleiroController.resetPosicaoSelecionada();
 
             if (tabuleiroController.realizarJogada(origem, destino, corJogadorAtual)) {
                 jogoDeDamasModel.finalizarTurno();

@@ -5,12 +5,14 @@ import com.jogodedamas.model.Dama;
 import com.jogodedamas.model.Tabuleiro;
 import com.jogodedamas.utils.Cor;
 import com.jogodedamas.utils.Posicao;
+import com.jogodedamas.utils.PosicaoListener;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class TabuleiroSwingView extends JFrame {
     private final CasaJButton[][] casaJButtons;
+    private PosicaoListener posicaoListener;
 
     public TabuleiroSwingView() {
         setTitle("Jogo de Damas");
@@ -31,6 +33,9 @@ public class TabuleiroSwingView extends JFrame {
                 this.casaJButtons[linha][coluna].setBorderPainted(false);
 
                 this.casaJButtons[linha][coluna].addActionListener(e -> {
+                    if (posicaoListener != null) {
+                        posicaoListener.posicaoSelecionada(casaJButton.getPosicao());
+                    }
                 });
 
                 tabuleiroPanel.add(casaJButton);
@@ -38,6 +43,10 @@ public class TabuleiroSwingView extends JFrame {
         }
 
         this.add(tabuleiroPanel);
+    }
+
+    public void setPosicaoListener(PosicaoListener listener) {
+        this.posicaoListener = listener;
     }
 
     public void atualizarPosicoes(final Tabuleiro tabuleiro) {
@@ -95,6 +104,7 @@ class CasaJButton extends JButton {
     }
 
     public Posicao getPosicao() {
+        System.out.println("getPosicao");
         return Posicao.toPosicao(this.linha, this.coluna);
     }
 }
