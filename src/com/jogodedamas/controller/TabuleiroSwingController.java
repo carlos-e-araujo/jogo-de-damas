@@ -1,5 +1,6 @@
 package com.jogodedamas.controller;
 
+import com.jogodedamas.model.JogoDeDamas;
 import com.jogodedamas.model.Tabuleiro;
 import com.jogodedamas.utils.Cor;
 import com.jogodedamas.utils.Posicao;
@@ -8,12 +9,14 @@ import com.jogodedamas.view.TabuleiroSwingView;
 public class TabuleiroSwingController {
     private final Tabuleiro modelTabuleiro;
     private final TabuleiroSwingView view;
+    private final JogoDeDamasSwingController jogoDeDamasController;
     Posicao origem = null;
     Posicao destino = null;
 
     public TabuleiroSwingController(Tabuleiro tabuleiro, TabuleiroSwingView tabuleiroView) {
         this.modelTabuleiro = tabuleiro;
         this.view = tabuleiroView;
+        this.jogoDeDamasController = new JogoDeDamasSwingController(new JogoDeDamas());
     }
 
     public void atualizarTabuleiroView() {
@@ -48,22 +51,24 @@ public class TabuleiroSwingController {
 
                 view.getCasaJButton()[i][j].addActionListener(e -> {
                     if (modelTabuleiro.getCelula(col, row).getPeca() != null) {
-                        if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.BRANCO) {
-                            if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.PRETO) {
-                                return;
-                            }
-                        }
-
-                        if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.PRETO) {
-                            if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.BRANCO) {
-                                return;
-                            }
-                        }
-
                         this.origem = Posicao.toPosicao(col, row);
                     } else {
                         this.destino = Posicao.toPosicao(col, row);
                     }
+
+                    if (this.getOrigem() != null && this.getDestino() != null) {
+                        if (this.realizarJogada(this.getOrigem(), this.getDestino(), jogoDeDamasController.getCorJogadorAtual())) {
+                            jogoDeDamasController.finalizarTurno();
+                        }
+
+                        this.resetarOrigemDestino();
+                    }
+
+                    if (this.verificarFimDeJogo()) {
+                        System.exit(1);
+                    }
+
+                    this.atualizarTabuleiroView();
 
                     atualizarTabuleiroView();
                 });

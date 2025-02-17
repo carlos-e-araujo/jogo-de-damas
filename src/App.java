@@ -1,10 +1,10 @@
-import com.jogodedamas.controller.JogoDeDamasSwingController;
-import com.jogodedamas.model.JogoDeDamas;
-import com.jogodedamas.view.JogoDeDamasView;
+import com.jogodedamas.controller.TabuleiroSwingController;
+import com.jogodedamas.model.Tabuleiro;
+import com.jogodedamas.view.TabuleiroSwingView;
 
 public class App {
     public static void main(String[] args) {
-        JogoDeDamasSwingController jogoDeDamasSwingController = new JogoDeDamasSwingController(new JogoDeDamas());
-        jogoDeDamasSwingController.iniciarJogo();
+        TabuleiroSwingController tabuleiroSwingController = new TabuleiroSwingController(new Tabuleiro(), new TabuleiroSwingView());
+        tabuleiroSwingController.iniciarJogo();
     }
 }
