@@ -101,7 +101,4 @@ public class TabuleiroSwingController {
     public Posicao getDestino() {
         return this.destino;
     }
-
-    public void finalizarJogo() {
-    }
 }
