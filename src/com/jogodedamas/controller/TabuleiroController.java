@@ -9,9 +9,11 @@ import com.jogodedamas.view.TabuleiroSwingView;
 public class TabuleiroSwingController {
     private final Tabuleiro modelTabuleiro;
     private final TabuleiroSwingView view;
+
     private final JogoDeDamasSwingController jogoDeDamasController;
-    Posicao origem = null;
-    Posicao destino = null;
+
+    private Posicao origem = null;
+    private Posicao destino = null;
 
     public TabuleiroSwingController(Tabuleiro tabuleiro, TabuleiroSwingView tabuleiroView) {
         this.modelTabuleiro = tabuleiro;
