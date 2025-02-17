@@ -14,7 +14,7 @@ public class TabuleiroSwingController {
         this.view = tabuleiroView;
     }
 
-    public void exibirTabuleiro() {
+    public void atualizarTabuleiroView() {
         view.atualizarPosicoes(modelTabuleiro);
     }
 
