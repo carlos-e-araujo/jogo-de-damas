@@ -26,14 +26,14 @@ public class TabuleiroSwingController {
 
     public boolean realizarJogada(Posicao origem, Posicao destino, Cor corJogador) {
         if (!modelTabuleiro.verificarMovimento(origem, destino, corJogador)) {
-            view.atualizarStatus("Jogada inválida. Tente novamente.");
+            view.statusJogadaInvalida();
             return false;
         }
 
         if (modelTabuleiro.verificarCaptura(origem, destino)) {
             modelTabuleiro.realizarCaptura(origem, destino);
         } else if (!modelTabuleiro.verificarPasso(origem, destino)) {
-            view.atualizarStatus("Jogada inválida. Tente novamente.");
+            view.statusJogadaInvalida();
             return false;
         }
 
@@ -43,7 +43,7 @@ public class TabuleiroSwingController {
             modelTabuleiro.realizarPromocao(destino);
         }
 
-        view.atualizarStatus("Troca de turno.");
+        view.statusTrocaDeTurno();
         return true;
     }
 
@@ -63,13 +63,15 @@ public class TabuleiroSwingController {
                     if (this.getOrigem() != null && this.getDestino() != null) {
                         if (this.realizarJogada(this.getOrigem(), this.getDestino(), jogoDeDamasController.getCorJogadorAtual())) {
                             jogoDeDamasController.finalizarTurno();
+                        } else {
+                            view.statusJogadaInvalida();
                         }
 
                         this.resetarOrigemDestino();
                     }
 
                     if (this.verificarFimDeJogo()) {
-                        view.mostrarFimDeJogo("Fim de Jogo! O jogador " + (jogoDeDamasController.getCorJogadorAtual() == Cor.BRANCO ? "Preto" : "Branco") + " venceu.");
+                        view.mostrarFimDeJogo(jogoDeDamasController.getCorJogadorAtual());
                         System.exit(0);
                     }
 
@@ -85,14 +87,10 @@ public class TabuleiroSwingController {
         return modelTabuleiro.verificarFimDeJogo();
     }
 
-    public Cor getCorComMaisPecas() {
-        return (modelTabuleiro.getQtdPecasBrancas() > modelTabuleiro.getQtdPecasPretas()) ? Cor.BRANCO : Cor.PRETO;
-    }
-
     public void iniciarJogo() {
         view.iniciarTabuleiro(modelTabuleiro);
         view.atualizarJogadorAtual(jogoDeDamasController.getCorJogadorAtual());
-        view.atualizarStatus("Jogo iniciado. Vez do jogador: " + (jogoDeDamasController.getCorJogadorAtual() == Cor.BRANCO ? "Branco" : "Preto"));
+        view.statusInicioDeJogo();
         this.registrarEventoJButtonClick();
     }
 
