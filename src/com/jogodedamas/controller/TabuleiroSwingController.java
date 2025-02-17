@@ -3,32 +3,17 @@ package com.jogodedamas.controller;
 import com.jogodedamas.model.Tabuleiro;
 import com.jogodedamas.utils.Cor;
 import com.jogodedamas.utils.Posicao;
-import com.jogodedamas.utils.PosicaoListener;
 import com.jogodedamas.view.TabuleiroSwingView;
 
-public class TabuleiroSwingController implements PosicaoListener {
-    private Tabuleiro modelTabuleiro;
-    private TabuleiroSwingView view;
-    private Posicao posicaoSelecionada;
+public class TabuleiroSwingController {
+    private final Tabuleiro modelTabuleiro;
+    private final TabuleiroSwingView view;
+    Posicao origem = null;
+    Posicao destino = null;
 
     public TabuleiroSwingController(Tabuleiro tabuleiro, TabuleiroSwingView tabuleiroView) {
         this.modelTabuleiro = tabuleiro;
         this.view = tabuleiroView;
-        this.posicaoSelecionada = Posicao.INVALIDA;
-    }
-
-    @Override
-    public void posicaoSelecionada(Posicao posicao) {
-        this.posicaoSelecionada = posicao;
-    }
-
-    public Posicao getPosicaoSelecionada() {
-        System.out.println("getPosicaoSelecionada: " + posicaoSelecionada.toString());
-        return posicaoSelecionada;
-    }
-
-    public void resetPosicaoSelecionada() {
-        posicaoSelecionada = Posicao.INVALIDA;
     }
 
     public void atualizarTabuleiroView() {
@@ -55,6 +40,37 @@ public class TabuleiroSwingController implements PosicaoListener {
         return true;
     }
 
+    private void registrarEventoJButtonClick() {
+        for (int i = 0; i < modelTabuleiro.getColunas(); i++) {
+            for (int j = 0; j < modelTabuleiro.getLinhas(); j++) {
+                final int col = i;
+                final int row = j;
+
+                view.getCasaJButton()[i][j].addActionListener(e -> {
+                    if (modelTabuleiro.getCelula(col, row).getPeca() != null) {
+                        if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.BRANCO) {
+                            if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.PRETO) {
+                                return;
+                            }
+                        }
+
+                        if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.PRETO) {
+                            if (modelTabuleiro.getCelula(col, row).getPeca().getCor() == Cor.BRANCO) {
+                                return;
+                            }
+                        }
+
+                        this.origem = Posicao.toPosicao(col, row);
+                    } else {
+                        this.destino = Posicao.toPosicao(col, row);
+                    }
+
+                    atualizarTabuleiroView();
+                });
+            }
+        }
+    }
+
     public boolean verificarFimDeJogo() {
         return modelTabuleiro.verificarFimDeJogo();
     }
@@ -65,6 +81,20 @@ public class TabuleiroSwingController implements PosicaoListener {
 
     public void iniciarJogo() {
         view.iniciarTabuleiro(modelTabuleiro);
+        this.registrarEventoJButtonClick();
+    }
+
+    public void resetarOrigemDestino() {
+        this.origem = null;
+        this.destino = null;
+    }
+
+    public Posicao getOrigem() {
+        return this.origem;
+    }
+
+    public Posicao getDestino() {
+        return this.destino;
     }
 
     public void finalizarJogo() {

@@ -84,4 +84,8 @@ public class TabuleiroSwingView extends JFrame {
 
         this.atualizarPosicoes(tabuleiro);
     }
+
+    public JButton[][] getCasaJButton() {
+        return this.casaJButtons;
+    }
 }

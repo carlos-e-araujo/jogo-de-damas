@@ -4,8 +4,7 @@ import com.jogodedamas.view.JogoDeDamasView;
 
 public class App {
     public static void main(String[] args) {
-        JogoDeDamasSwingController jogoDeDamasSwingController = new JogoDeDamasSwingController(new JogoDeDamas(),
-            new JogoDeDamasView());
+        JogoDeDamasSwingController jogoDeDamasSwingController = new JogoDeDamasSwingController(new JogoDeDamas());
         jogoDeDamasSwingController.iniciarJogo();
     }
 }
