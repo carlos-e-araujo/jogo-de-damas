@@ -21,16 +21,19 @@ public class TabuleiroSwingController {
 
     public void atualizarTabuleiroView() {
         view.atualizarPosicoes(modelTabuleiro);
+        view.atualizarJogadorAtual(jogoDeDamasController.getCorJogadorAtual());
     }
 
     public boolean realizarJogada(Posicao origem, Posicao destino, Cor corJogador) {
         if (!modelTabuleiro.verificarMovimento(origem, destino, corJogador)) {
+            view.atualizarStatus("Jogada inválida. Tente novamente.");
             return false;
         }
 
         if (modelTabuleiro.verificarCaptura(origem, destino)) {
             modelTabuleiro.realizarCaptura(origem, destino);
         } else if (!modelTabuleiro.verificarPasso(origem, destino)) {
+            view.atualizarStatus("Jogada inválida. Tente novamente.");
             return false;
         }
 
@@ -40,6 +43,7 @@ public class TabuleiroSwingController {
             modelTabuleiro.realizarPromocao(destino);
         }
 
+        view.atualizarStatus("Troca de turno.");
         return true;
     }
 
@@ -65,7 +69,8 @@ public class TabuleiroSwingController {
                     }
 
                     if (this.verificarFimDeJogo()) {
-                        System.exit(1);
+                        view.mostrarFimDeJogo("Fim de Jogo! O jogador " + (jogoDeDamasController.getCorJogadorAtual() == Cor.BRANCO ? "Preto" : "Branco") + " venceu.");
+                        System.exit(0);
                     }
 
                     this.atualizarTabuleiroView();
@@ -86,6 +91,8 @@ public class TabuleiroSwingController {
 
     public void iniciarJogo() {
         view.iniciarTabuleiro(modelTabuleiro);
+        view.atualizarJogadorAtual(jogoDeDamasController.getCorJogadorAtual());
+        view.atualizarStatus("Jogo iniciado. Vez do jogador: " + (jogoDeDamasController.getCorJogadorAtual() == Cor.BRANCO ? "Branco" : "Preto"));
         this.registrarEventoJButtonClick();
     }
 

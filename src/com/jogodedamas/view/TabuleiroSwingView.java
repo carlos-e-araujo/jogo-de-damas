@@ -10,6 +10,8 @@ import java.awt.*;
 
 public class TabuleiroSwingView extends JFrame {
     private final JButton[][] casaJButtons;
+    private final JLabel jogadorAtualLabel;
+    private final JLabel statusLabel;
 
     public TabuleiroSwingView() {
         setTitle("Jogo de Damas");
@@ -18,6 +20,16 @@ public class TabuleiroSwingView extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+
+        jogadorAtualLabel = new JLabel("Vez do jogador: ");
+        jogadorAtualLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        jogadorAtualLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        this.add(jogadorAtualLabel, BorderLayout.NORTH);
+
+        statusLabel = new JLabel(" ");
+        statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        statusLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        this.add(statusLabel, BorderLayout.SOUTH);
 
         JPanel tabuleiroPanel = new JPanel(new GridLayout(8, 8));
         this.casaJButtons = new JButton[8][8];
@@ -83,6 +95,18 @@ public class TabuleiroSwingView extends JFrame {
         }
 
         this.atualizarPosicoes(tabuleiro);
+    }
+
+    public void atualizarJogadorAtual(Cor corJogador) {
+        jogadorAtualLabel.setText("Vez do jogador: " + (corJogador == Cor.BRANCO ? "Branco" : "Preto"));
+    }
+
+    public void atualizarStatus(String mensagem) {
+        statusLabel.setText(mensagem);
+    }
+
+    public void mostrarFimDeJogo(String mensagem) {
+        JOptionPane.showMessageDialog(this, mensagem, "Fim de Jogo", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public JButton[][] getCasaJButton() {
