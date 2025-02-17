@@ -15,20 +15,29 @@ public class TabuleiroSwingView extends JFrame {
 
     public TabuleiroSwingView() {
         setTitle("Jogo de Damas");
-        setSize(800, 800);
+        setSize(800, 900);
         setMinimumSize(new Dimension(800, 800));
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
         jogadorAtualLabel = new JLabel("Vez do jogador: ");
         jogadorAtualLabel.setHorizontalAlignment(SwingConstants.CENTER);
         jogadorAtualLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        jogadorAtualLabel.setOpaque(true);
+        jogadorAtualLabel.setBackground(Color.BLACK);
+        jogadorAtualLabel.setForeground(Color.WHITE);
+        jogadorAtualLabel.setBorder(null);
         this.add(jogadorAtualLabel, BorderLayout.NORTH);
 
         statusLabel = new JLabel(" ");
         statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        statusLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        statusLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        statusLabel.setOpaque(true);
+        statusLabel.setBackground(Color.BLACK);
+        statusLabel.setForeground(Color.WHITE);
+        statusLabel.setBorder(null);
         this.add(statusLabel, BorderLayout.SOUTH);
 
         JPanel tabuleiroPanel = new JPanel(new GridLayout(8, 8));
@@ -101,11 +110,20 @@ public class TabuleiroSwingView extends JFrame {
         jogadorAtualLabel.setText("Vez do jogador: " + (corJogador == Cor.BRANCO ? "Branco" : "Preto"));
     }
 
-    public void atualizarStatus(String mensagem) {
-        statusLabel.setText(mensagem);
+    public void statusInicioDeJogo() {
+        statusLabel.setText("Jogo Iniciado.");
     }
 
-    public void mostrarFimDeJogo(String mensagem) {
+    public void statusTrocaDeTurno() {
+        statusLabel.setText("Troca de turno.");
+    }
+
+    public void statusJogadaInvalida() {
+        statusLabel.setText("Jogada inválida. Tente Novamente.");
+    }
+
+    public void mostrarFimDeJogo(Cor corVencedor) {
+        String mensagem = "Fim de Jogo! O jogador " + (corVencedor == Cor.BRANCO ? "Preto" : "Branco") + " venceu.";
         JOptionPane.showMessageDialog(this, mensagem, "Fim de Jogo", JOptionPane.INFORMATION_MESSAGE);
     }
 
