@@ -15,7 +15,6 @@ public class TabuleiroSwingController implements PosicaoListener {
         this.modelTabuleiro = tabuleiro;
         this.view = tabuleiroView;
         this.posicaoSelecionada = Posicao.INVALIDA;
-        tabuleiroView.setPosicaoListener(this);
     }
 
     @Override
