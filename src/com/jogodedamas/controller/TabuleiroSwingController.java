@@ -54,10 +54,13 @@ public class TabuleiroSwingController {
                 final int row = j;
 
                 view.getCasaJButton()[i][j].addActionListener(e -> {
-                    if (modelTabuleiro.getCelula(col, row).getPeca() != null) {
-                        this.origem = Posicao.toPosicao(col, row);
-                    } else {
+                    if (this.origem != null && this.destino == null) {
                         this.destino = Posicao.toPosicao(col, row);
+                    }
+
+                    if (this.origem == null) {
+                        this.origem = Posicao.toPosicao(col, row);
+                        this.view.statusPecaSelecionada();
                     }
 
                     if (this.getOrigem() != null && this.getDestino() != null) {

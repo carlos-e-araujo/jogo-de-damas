@@ -122,6 +122,10 @@ public class TabuleiroSwingView extends JFrame {
         statusLabel.setText("Jogada inválida. Tente Novamente.");
     }
 
+    public void statusPecaSelecionada() {
+        statusLabel.setText("Peça Selecionada.");
+    }
+
     public void mostrarFimDeJogo(Cor corVencedor) {
         String mensagem = "Fim de Jogo! O jogador " + (corVencedor == Cor.BRANCO ? "Preto" : "Branco") + " venceu.";
         JOptionPane.showMessageDialog(this, mensagem, "Fim de Jogo", JOptionPane.INFORMATION_MESSAGE);
