@@ -72,7 +72,7 @@ public class TabuleiroController {
                             view.statusJogadaInvalida();
                         }
 
-                        this.resetarOrigemDestino();
+                        this.resetOrigemDestino();
                     }
 
                     if (this.verificarFimDeJogo()) {
@@ -99,7 +99,7 @@ public class TabuleiroController {
         this.registrarEventoJButtonClick();
     }
 
-    public void resetarOrigemDestino() {
+    public void resetOrigemDestino() {
         this.origem = null;
         this.destino = null;
     }
