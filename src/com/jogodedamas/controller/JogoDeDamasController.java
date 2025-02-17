@@ -3,18 +3,18 @@ package com.jogodedamas.controller;
 import com.jogodedamas.model.JogoDeDamas;
 import com.jogodedamas.utils.Cor;
 
-public class JogoDeDamasSwingController {
-    private final JogoDeDamas jogoDeDamasModel;
+public class JogoDeDamasController {
+    private final JogoDeDamas model;
 
-    public JogoDeDamasSwingController(JogoDeDamas jogoDeDamasModel) {
-        this.jogoDeDamasModel = jogoDeDamasModel;
+    public JogoDeDamasController(JogoDeDamas model) {
+        this.model = model;
     }
 
     public Cor getCorJogadorAtual() {
-        return this.jogoDeDamasModel.getJogadorAtual().getCor();
+        return this.model.getJogadorAtual().getCor();
     }
 
     public void finalizarTurno() {
-        this.jogoDeDamasModel.finalizarTurno();
+        this.model.finalizarTurno();
     }
 }

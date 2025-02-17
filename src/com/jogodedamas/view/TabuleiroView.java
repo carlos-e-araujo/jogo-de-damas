@@ -8,12 +8,12 @@ import com.jogodedamas.utils.Cor;
 import javax.swing.*;
 import java.awt.*;
 
-public class TabuleiroSwingView extends JFrame {
+public class TabuleiroView extends JFrame {
     private final JButton[][] casaJButtons;
     private final JLabel jogadorAtualLabel;
     private final JLabel statusLabel;
 
-    public TabuleiroSwingView() {
+    public TabuleiroView() {
         setTitle("Jogo de Damas");
         setSize(800, 900);
         setMinimumSize(new Dimension(800, 800));

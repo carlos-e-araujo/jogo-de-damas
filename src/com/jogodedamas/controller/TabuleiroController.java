@@ -4,45 +4,45 @@ import com.jogodedamas.model.JogoDeDamas;
 import com.jogodedamas.model.Tabuleiro;
 import com.jogodedamas.utils.Cor;
 import com.jogodedamas.utils.Posicao;
-import com.jogodedamas.view.TabuleiroSwingView;
+import com.jogodedamas.view.TabuleiroView;
 
-public class TabuleiroSwingController {
-    private final Tabuleiro modelTabuleiro;
-    private final TabuleiroSwingView view;
+public class TabuleiroController {
+    private final Tabuleiro model;
+    private final TabuleiroView view;
 
-    private final JogoDeDamasSwingController jogoDeDamasController;
+    private final JogoDeDamasController jogoDeDamasController;
 
     private Posicao origem = null;
     private Posicao destino = null;
 
-    public TabuleiroSwingController(Tabuleiro tabuleiro, TabuleiroSwingView tabuleiroView) {
-        this.modelTabuleiro = tabuleiro;
+    public TabuleiroController(Tabuleiro tabuleiro, TabuleiroView tabuleiroView) {
+        this.model = tabuleiro;
         this.view = tabuleiroView;
-        this.jogoDeDamasController = new JogoDeDamasSwingController(new JogoDeDamas());
+        this.jogoDeDamasController = new JogoDeDamasController(new JogoDeDamas());
     }
 
     public void atualizarTabuleiroView() {
-        view.atualizarPosicoes(modelTabuleiro);
+        view.atualizarPosicoes(model);
         view.atualizarJogadorAtual(jogoDeDamasController.getCorJogadorAtual());
     }
 
     public boolean realizarJogada(Posicao origem, Posicao destino, Cor corJogador) {
-        if (!modelTabuleiro.verificarMovimento(origem, destino, corJogador)) {
+        if (!model.verificarMovimento(origem, destino, corJogador)) {
             view.statusJogadaInvalida();
             return false;
         }
 
-        if (modelTabuleiro.verificarCaptura(origem, destino)) {
-            modelTabuleiro.realizarCaptura(origem, destino);
-        } else if (!modelTabuleiro.verificarPasso(origem, destino)) {
+        if (model.verificarCaptura(origem, destino)) {
+            model.realizarCaptura(origem, destino);
+        } else if (!model.verificarPasso(origem, destino)) {
             view.statusJogadaInvalida();
             return false;
         }
 
-        modelTabuleiro.realizarMovimento(origem, destino);
+        model.realizarMovimento(origem, destino);
 
-        if (modelTabuleiro.verificarPromocao(destino)) {
-            modelTabuleiro.realizarPromocao(destino);
+        if (model.verificarPromocao(destino)) {
+            model.realizarPromocao(destino);
         }
 
         view.statusTrocaDeTurno();
@@ -50,8 +50,8 @@ public class TabuleiroSwingController {
     }
 
     private void registrarEventoJButtonClick() {
-        for (int i = 0; i < modelTabuleiro.getColunas(); i++) {
-            for (int j = 0; j < modelTabuleiro.getLinhas(); j++) {
+        for (int i = 0; i < model.getColunas(); i++) {
+            for (int j = 0; j < model.getLinhas(); j++) {
                 final int col = i;
                 final int row = j;
 
@@ -89,11 +89,11 @@ public class TabuleiroSwingController {
     }
 
     public boolean verificarFimDeJogo() {
-        return modelTabuleiro.verificarFimDeJogo();
+        return model.verificarFimDeJogo();
     }
 
     public void iniciarJogo() {
-        view.iniciarTabuleiro(modelTabuleiro);
+        view.iniciarTabuleiro(model);
         view.atualizarJogadorAtual(jogoDeDamasController.getCorJogadorAtual());
         view.statusInicioDeJogo();
         this.registrarEventoJButtonClick();
